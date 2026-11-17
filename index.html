@@ -20,28 +20,21 @@
       overflow-x: hidden;
     }
 
-    /* Running cat */
-    .cat-run {
+    /* Static bubbles */
+    .bubbles {
       position: fixed;
-      width: 80px;
-      height: 80px;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
       border-radius: 50%;
-      background: url('https://i.img402.dev/65fwa93931.jpg') center 30% / cover;
-      border: 3px solid rgba(255,255,255,0.7);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 50;
-      pointer-events: auto;
-      transition: left 0.8s ease-in-out, top 0.8s ease-in-out;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.15) 45%, transparent 70%);
+      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: inset -2px -3px 8px rgba(255,255,255,0.4), 0 0 6px rgba(255,255,255,0.25);
     }
-    .cat-run.running {
-      animation: bounce 0.4s ease-in-out infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-8px) scale(1.05); }
-    }
-    .cat-run:active { transform: scale(0.9); }
 
     header {
       position: sticky; top: 0; z-index: 100;
@@ -226,7 +219,7 @@
     }
 
     .gelatin {
-      transition: transform 0.15s ease-out;
+      transition: transform 0.12s ease-out;
     }
 
     @media (max-width: 700px) {
@@ -259,13 +252,11 @@
       .model-box h3 { font-size: 20px; }
 
       .btn { padding: 11px 20px; font-size: 13px; }
-
-      .cat-run { width: 64px; height: 64px; }
     }
   </style>
 </head>
 <body>
-  <div class="cat-run" id="catRun" title="Кошка"></div>
+  <div class="bubbles" id="bubbles"></div>
 
   <header class="gelatin">
     <nav>
@@ -368,56 +359,27 @@
   </footer>
 
   <script>
+    // Static bubbles
+    const container = document.getElementById('bubbles');
+    for (let i = 0; i < 45; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = Math.random() * 70 + 12;
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.left = Math.random() * 100 + '%';
+      b.style.top = Math.random() * 100 + '%';
+      b.style.opacity = (Math.random() * 0.5 + 0.3).toFixed(2);
+      container.appendChild(b);
+    }
+
     function changeImage(thumb) {
       document.getElementById('mainPhoto').src = thumb.src;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     }
 
-    // Running cat across the whole screen
-    const cat = document.getElementById('catRun');
-    let catTimer = null;
-
-    function randomPosition() {
-      const size = parseInt(getComputedStyle(cat).width) || 80;
-      const maxX = window.innerWidth - size - 10;
-      const maxY = window.innerHeight - size - 10;
-      return {
-        x: Math.max(10, Math.random() * maxX),
-        y: Math.max(10, Math.random() * maxY)
-      };
-    }
-
-    function moveCatRandom() {
-      const pos = randomPosition();
-      cat.classList.add('running');
-      cat.style.left = pos.x + 'px';
-      cat.style.top = pos.y + 'px';
-      setTimeout(() => cat.classList.remove('running'), 800);
-    }
-
-    function startCat() {
-      moveCatRandom();
-      catTimer = setInterval(moveCatRandom, 2200 + Math.random() * 1500);
-    }
-
-    cat.addEventListener('click', () => {
-      clearInterval(catTimer);
-      moveCatRandom();
-      setTimeout(startCat, 1000);
-    });
-
-    window.addEventListener('load', startCat);
-    window.addEventListener('resize', () => {
-      // keep cat on screen after resize
-      const size = parseInt(getComputedStyle(cat).width) || 80;
-      const left = parseFloat(cat.style.left) || 0;
-      const top = parseFloat(cat.style.top) || 0;
-      if (left > window.innerWidth - size) cat.style.left = (window.innerWidth - size - 10) + 'px';
-      if (top > window.innerHeight - size) cat.style.top = (window.innerHeight - size - 10) + 'px';
-    });
-
-    // Gelatin effect
+    // Stronger gelatin press effect
     const gelatinEls = document.querySelectorAll('.gelatin');
     let pressing = false;
     let pressX = 0, pressY = 0;
@@ -434,13 +396,13 @@
         const dx = pressX - cx;
         const dy = pressY - cy;
         const dist = Math.sqrt(dx*dx + dy*dy);
-        const maxDist = 350;
+        const maxDist = 500;
         if (dist < maxDist) {
-          const strength = (1 - dist / maxDist) * 14;
+          const strength = (1 - dist / maxDist) * 28;
           const angle = Math.atan2(dy, dx);
-          const tx = Math.cos(angle) * strength * 0.35;
-          const ty = Math.sin(angle) * strength * 0.35;
-          el.style.transform = `translate(${tx}px, ${ty}px) scale(${1 - strength * 0.006})`;
+          const tx = Math.cos(angle) * strength * 0.55;
+          const ty = Math.sin(angle) * strength * 0.55;
+          el.style.transform = `translate(${tx}px, ${ty}px) scale(${1 - strength * 0.012})`;
         } else {
           el.style.transform = '';
         }
@@ -448,7 +410,6 @@
     }
 
     document.addEventListener('pointerdown', (e) => {
-      if (e.target === cat) return;
       pressing = true;
       pressX = e.clientX;
       pressY = e.clientY;
