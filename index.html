@@ -9,15 +9,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(160deg, #c4b5fd 0%, #a5f3fc 40%, #fde68a 70%, #ddd6fe 100%);
-      color: #1a1a1a;
-      line-height: 1.5;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(160deg, #c4b5fd 0%, #a5f3fc 40%, #fde68a 70%, #ddd6fe 100%); color: #1a1a1a; line-height: 1.5; min-height: 100vh; position: relative; overflow-x: hidden; }
     .bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
     .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.15) 45%, transparent 70%); border: 1px solid rgba(255,255,255,0.45); box-shadow: inset -2px -3px 8px rgba(255,255,255,0.4), 0 0 6px rgba(255,255,255,0.25); }
     header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.45); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.5); box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 10px 0; }
@@ -61,30 +53,13 @@
     footer { text-align: center; padding: 24px 12px; color: #555; border-top: 1px solid rgba(255,255,255,0.4); font-size: 12px; position: relative; z-index: 1; }
     .gelatin { transition: transform 0.12s ease-out; }
     @media (max-width: 700px) {
-      header { padding: 8px 0; }
-      nav { padding: 0 10px; }
-      .logo { font-size: 15px; }
-      .nav-links { gap: 8px; }
-      .nav-links a { font-size: 12px; }
-      .hero { padding: 20px 10px 16px; }
-      .hero h1 { font-size: 28px; }
-      .hero p { font-size: 14px; margin-bottom: 14px; }
-      .hero-icon { width: 60px; height: 60px; font-size: 28px; }
-      .icon-wrap { max-width: 100px; }
-      .icon-label { font-size: 12px; }
-      .icon-tag { font-size: 10px; padding: 2px 6px; }
-      section { padding: 24px 10px; }
-      section h2 { font-size: 22px; }
-      .section-desc { font-size: 13px; margin-bottom: 14px; }
-      .about-grid { grid-template-columns: 1fr; gap: 16px; }
-      .about-photo { max-height: 280px; }
-      .product-card { grid-template-columns: 1fr; padding: 10px; margin-bottom: 16px; }
-      .main-wrap { min-height: 140px; }
-      .thumbs { flex-direction: row; overflow-x: auto; }
-      .thumb { min-width: 60px; width: 60px; height: 60px; }
-      .model-box { padding: 18px 12px; }
-      .model-box h3 { font-size: 18px; }
-      .btn { padding: 10px 18px; font-size: 13px; }
+      header { padding: 8px 0; } nav { padding: 0 10px; } .logo { font-size: 15px; } .nav-links { gap: 8px; } .nav-links a { font-size: 12px; }
+      .hero { padding: 20px 10px 16px; } .hero h1 { font-size: 28px; } .hero p { font-size: 14px; margin-bottom: 14px; }
+      .hero-icon { width: 60px; height: 60px; font-size: 28px; } .icon-wrap { max-width: 100px; } .icon-label { font-size: 12px; } .icon-tag { font-size: 10px; padding: 2px 6px; }
+      section { padding: 24px 10px; } section h2 { font-size: 22px; } .section-desc { font-size: 13px; margin-bottom: 14px; }
+      .about-grid { grid-template-columns: 1fr; gap: 16px; } .about-photo { max-height: 280px; }
+      .product-card { grid-template-columns: 1fr; padding: 10px; margin-bottom: 16px; } .main-wrap { min-height: 140px; } .thumbs { flex-direction: row; overflow-x: auto; } .thumb { min-width: 60px; width: 60px; height: 60px; }
+      .model-box { padding: 18px 12px; } .model-box h3 { font-size: 18px; } .btn { padding: 10px 18px; font-size: 13px; }
     }
   </style>
 </head>
@@ -122,7 +97,7 @@
         <p>Каждый макет проходит через десятки итераций. Не люблю шаблоны и готовые решения — делаю под задачу, с учётом тона бренда и того, как это будет выглядеть в печати и на экране.</p>
         <p>Если нужен дизайн, который не стыдно исправлять — напишите. Разберёмся быстро.</p>
       </div>
-      <img class="about-photo" src="https://karevholytek-hub.github.io/portfolio/designer.jpg" alt="Дизайнер">
+      <img class="about-photo" src="https://tmpfiles.org/dl/weAGtZbyzTUX/designer.jpg" alt="Дизайнер">
     </div>
   </section>
   <section id="portfolio" class="gelatin">
@@ -158,10 +133,8 @@
       const b = document.createElement('div');
       b.className = 'bubble';
       const size = Math.random() * 70 + 12;
-      b.style.width = size + 'px';
-      b.style.height = size + 'px';
-      b.style.left = Math.random() * 100 + '%';
-      b.style.top = Math.random() * 100 + '%';
+      b.style.width = size + 'px'; b.style.height = size + 'px';
+      b.style.left = Math.random() * 100 + '%'; b.style.top = Math.random() * 100 + '%';
       b.style.opacity = (Math.random() * 0.5 + 0.3).toFixed(2);
       container.appendChild(b);
     }
