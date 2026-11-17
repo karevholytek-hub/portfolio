@@ -43,12 +43,14 @@
       100% { transform: translateY(-20vh) scale(1); opacity: 0; }
     }
 
+    /* Gelatin elements */
     header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
       padding: 16px 0;
     }
     nav {
@@ -83,19 +85,24 @@
     }
     .btn {
       display: inline-block;
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(79,70,229,0.85));
       color: #fff;
       padding: 14px 32px;
       border-radius: 40px;
       text-decoration: none;
       font-weight: 600;
       font-size: 15px;
-      transition: transform 0.25s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(8px);
     }
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45);
+      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
     }
 
     section {
@@ -125,35 +132,35 @@
       gap: 20px;
     }
     .cat-card {
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.65);
       border-radius: 20px;
       padding: 32px 28px;
       text-decoration: none;
       color: inherit;
-      transition: all 0.3s;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
     }
     .cat-card:hover {
-      background: rgba(255,255,255,0.85);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.75);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.7);
     }
     .cat-card h3 { font-size: 22px; margin-bottom: 8px; font-weight: 600; color: #111; }
     .cat-card p { color: #444; font-size: 15px; }
 
     .model-box {
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.65);
       border-radius: 24px;
       padding: 48px 32px;
       text-align: center;
       margin-top: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
     }
     .model-box h3 { margin-bottom: 8px; font-size: 28px; color: #111; }
     .model-box p { color: #444; margin-bottom: 28px; }
@@ -165,7 +172,7 @@
     }
 
     .photo-placeholder {
-      background: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.5);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.6);
       border-radius: 20px;
@@ -174,6 +181,7 @@
       align-items: center;
       justify-content: center;
       color: #666;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
     }
 
     footer {
@@ -184,6 +192,11 @@
       font-size: 14px;
       position: relative;
       z-index: 1;
+    }
+
+    /* Gelatin deformation targets */
+    .gelatin {
+      transition: transform 0.15s ease-out;
     }
 
     @media (max-width: 800px) {
@@ -198,7 +211,7 @@
 <body>
   <div class="bubbles" id="bubbles"></div>
 
-  <header>
+  <header class="gelatin">
     <nav>
       <a href="#" class="logo">Портфолио</a>
       <div class="nav-links">
@@ -210,13 +223,13 @@
     </nav>
   </header>
 
-  <div class="hero">
+  <div class="hero gelatin">
     <h1>Дизайн и 3D</h1>
     <p>Визитки, буклеты, упаковка, сайты и интерактивные 3D-модели.</p>
     <a href="#portfolio" class="btn">Смотреть работы</a>
   </div>
 
-  <section id="about">
+  <section id="about" class="gelatin">
     <h2>Обо мне</h2>
     <div class="about-grid">
       <div class="about-text">
@@ -230,39 +243,39 @@
     </div>
   </section>
 
-  <section id="portfolio">
+  <section id="portfolio" class="gelatin">
     <h2>Работы</h2>
     <p class="section-desc">Разделы будут дополняться.</p>
 
     <div class="categories">
-      <a href="#vizitki" class="cat-card">
+      <a href="#vizitki" class="cat-card gelatin">
         <h3>Визитки</h3>
         <p>Дизайн визитных карточек</p>
       </a>
-      <a href="#buklety" class="cat-card">
+      <a href="#buklety" class="cat-card gelatin">
         <h3>Буклеты</h3>
         <p>Буклеты, листовки, презентации</p>
       </a>
-      <a href="#upakovka" class="cat-card">
+      <a href="#upakovka" class="cat-card gelatin">
         <h3>Упаковка</h3>
         <p>Дизайн упаковки и этикеток</p>
       </a>
-      <a href="#sait" class="cat-card">
+      <a href="#sait" class="cat-card gelatin">
         <h3>Дизайн сайта</h3>
         <p>Оформление и макеты сайтов</p>
       </a>
-      <a href="#3d" class="cat-card">
+      <a href="#3d" class="cat-card gelatin">
         <h3>3D моделирование</h3>
         <p>Интерактивные 3D-модели</p>
       </a>
     </div>
   </section>
 
-  <section id="3d">
+  <section id="3d" class="gelatin">
     <h2>3D моделирование</h2>
     <p class="section-desc">Интерактивная модель. Можно крутить, менять виды.</p>
 
-    <div class="model-box">
+    <div class="model-box gelatin">
       <h3>STATMEC 250</h3>
       <p>Визуализация стенда статических прочностных испытаний</p>
       <a href="https://near-show-aaj2w.ship.place/" target="_blank" class="btn">Открыть 3D-модель</a>
@@ -271,17 +284,18 @@
     <p class="model-caption">Нажми кнопку выше, чтобы открыть интерактивную модель в новой вкладке (можно крутить и менять виды).</p>
   </section>
 
-  <section id="contacts">
+  <section id="contacts" class="gelatin">
     <h2>Контакты</h2>
     <p class="section-desc">Напишите, если нужен дизайн или есть вопросы.</p>
     <p style="color:#333;">Telegram / Email — добавим позже</p>
   </section>
 
-  <footer>
+  <footer class="gelatin">
     Портфолио · 2026
   </footer>
 
   <script>
+    // Bubbles
     const container = document.getElementById('bubbles');
     for (let i = 0; i < 25; i++) {
       const b = document.createElement('div');
@@ -294,6 +308,60 @@
       b.style.animationDelay = (Math.random() * 10) + 's';
       container.appendChild(b);
     }
+
+    // Gelatin press effect
+    const gelatinEls = document.querySelectorAll('.gelatin');
+    let pressing = false;
+    let pressX = 0, pressY = 0;
+
+    function updateGelatin() {
+      if (!pressing) {
+        gelatinEls.forEach(el => {
+          el.style.transform = '';
+        });
+        return;
+      }
+      gelatinEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = pressX - cx;
+        const dy = pressY - cy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const maxDist = 400;
+        if (dist < maxDist) {
+          const strength = (1 - dist / maxDist) * 18;
+          const angle = Math.atan2(dy, dx);
+          const tx = Math.cos(angle) * strength * 0.4;
+          const ty = Math.sin(angle) * strength * 0.4;
+          el.style.transform = `translate(${tx}px, ${ty}px) scale(${1 - strength * 0.008})`;
+        } else {
+          el.style.transform = '';
+        }
+      });
+    }
+
+    document.addEventListener('pointerdown', (e) => {
+      pressing = true;
+      pressX = e.clientX;
+      pressY = e.clientY;
+      updateGelatin();
+    });
+    document.addEventListener('pointermove', (e) => {
+      if (pressing) {
+        pressX = e.clientX;
+        pressY = e.clientY;
+        updateGelatin();
+      }
+    });
+    document.addEventListener('pointerup', () => {
+      pressing = false;
+      updateGelatin();
+    });
+    document.addEventListener('pointercancel', () => {
+      pressing = false;
+      updateGelatin();
+    });
   </script>
 </body>
 </html>
