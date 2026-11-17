@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Портфолио — Дизайн</title>
   <meta property="og:title" content="Портфолио">
-  <meta property="og:description" content="Визитки, буклеты, упаковка, дизайн сайтов">
+  <meta property="og:description" content="Визитки, буклеты, упаковка, 3D модели">
   <meta property="og:image" content="https://i.img402.dev/nhe7w6qcad.png">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #0f0f0f; color: #eee; line-height: 1.6; }
 
-    /* Header */
     header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(15,15,15,0.92); backdrop-filter: blur(10px);
@@ -28,7 +27,6 @@
     .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; transition: color 0.2s; }
     .nav-links a:hover { color: #4ade80; }
 
-    /* Hero */
     .hero {
       max-width: 1200px; margin: 0 auto; padding: 100px 20px 80px;
       text-align: center;
@@ -42,18 +40,15 @@
     }
     .btn:hover { transform: translateY(-2px); }
 
-    /* Sections */
     section { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
     section h2 { font-size: 36px; margin-bottom: 16px; }
     .section-desc { color: #aaa; margin-bottom: 40px; max-width: 700px; }
 
-    /* About */
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
     }
     .about-text p { margin-bottom: 16px; color: #ccc; }
 
-    /* Categories */
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -69,7 +64,6 @@
     .cat-card h3 { font-size: 22px; margin-bottom: 8px; }
     .cat-card p { color: #999; font-size: 15px; }
 
-    /* Product card (gallery) */
     .product-card {
       background: #1a1a1a; border-radius: 16px;
       display: grid; grid-template-columns: 1fr 160px;
@@ -99,6 +93,15 @@
     }
     .desc { color: #aaa; font-size: 16px; }
 
+    .model-frame {
+      width: 100%;
+      height: 70vh;
+      border: none;
+      border-radius: 16px;
+      background: #111;
+      margin-top: 20px;
+    }
+
     footer {
       text-align: center; padding: 40px 20px; color: #666; border-top: 1px solid #222;
     }
@@ -112,6 +115,7 @@
       .main-image { max-height: 70vh; }
       .thumbs { flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
       .thumb { min-width: 90px; width: 90px; height: 90px; }
+      .model-frame { height: 60vh; }
     }
   </style>
 </head>
@@ -122,14 +126,15 @@
       <div class="nav-links">
         <a href="#about">Обо мне</a>
         <a href="#portfolio">Работы</a>
+        <a href="#3d">3D</a>
         <a href="#contacts">Контакты</a>
       </div>
     </nav>
   </header>
 
   <div class="hero">
-    <h1>Дизайн, который работает</h1>
-    <p>Визитки, буклеты, упаковка, сайты и другие визуальные решения.</p>
+    <h1>Дизайн и 3D</h1>
+    <p>Визитки, буклеты, упаковка, сайты и интерактивные 3D-модели.</p>
     <a href="#portfolio" class="btn">Смотреть работы</a>
   </div>
 
@@ -137,12 +142,11 @@
     <h2>Обо мне</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>Занимаюсь дизайном и визуальными решениями для бизнеса. Делаю визитки, буклеты, упаковку, оформление сайтов и другие материалы.</p>
+        <p>Занимаюсь дизайном и визуальными решениями для бизнеса. Делаю визитки, буклеты, упаковку, оформление сайтов и 3D-модели.</p>
         <p>Работаю с вниманием к деталям и структуре. Каждый проект — это сочетание функциональности и внешнего вида.</p>
-        <p>Если нужен дизайн — напишите, обсудим задачу.</p>
+        <p>Если нужен дизайн или 3D — напишите, обсудим задачу.</p>
       </div>
       <div>
-        <!-- Можно добавить фото позже -->
         <div style="background:#1a1a1a; border-radius:16px; height:320px; display:flex; align-items:center; justify-content:center; color:#666;">
           Фото / аватар
         </div>
@@ -152,7 +156,7 @@
 
   <section id="portfolio">
     <h2>Работы</h2>
-    <p class="section-desc">Разделы будут дополняться. Нажмите на категорию, чтобы перейти к примерам.</p>
+    <p class="section-desc">Разделы будут дополняться.</p>
 
     <div class="categories">
       <a href="#vizitki" class="cat-card">
@@ -171,29 +175,23 @@
         <h3>Дизайн сайта</h3>
         <p>Оформление и макеты сайтов</p>
       </a>
+      <a href="#3d" class="cat-card">
+        <h3>3D моделирование</h3>
+        <p>Интерактивные 3D-модели</p>
+      </a>
     </div>
+  </section>
 
-    <!-- Пример карточки (можно дублировать под каждый раздел) -->
-    <div style="margin-top: 60px;" id="example">
-      <h3 style="margin-bottom: 20px;">Пример работы</h3>
-      <div class="product-card" data-product>
-        <div class="main-wrap">
-          <img class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Пример">
-        </div>
-        <div class="thumbs">
-          <img class="thumb active" src="https://i.img402.dev/nhe7w6qcad.png" data-full="https://i.img402.dev/nhe7w6qcad.png" alt="">
-          <img class="thumb" src="https://i.img402.dev/jo598488mj.png" data-full="https://i.img402.dev/jo598488mj.png" alt="">
-          <img class="thumb" src="https://i.img402.dev/g5226yd7fb.png" data-full="https://i.img402.dev/g5226yd7fb.png" alt="">
-          <img class="thumb" src="https://i.img402.dev/k8z0cwix61.png" data-full="https://i.img402.dev/k8z0cwix61.png" alt="">
-          <img class="thumb" src="https://i.img402.dev/h5oy4luy2b.png" data-full="https://i.img402.dev/h5oy4luy2b.png" alt="">
-        </div>
-        <div class="info">
-          <div class="badge">ПРИМЕР</div>
-          <div class="title">ОВЕРСАЙЗ ХУДИ</div>
-          <p class="desc">Карточка с галереей. Поддерживает любые пропорции. Кликни по миниатюрам.</p>
-        </div>
-      </div>
-    </div>
+  <section id="3d">
+    <h2>3D моделирование</h2>
+    <p class="section-desc">STATMEC 250 — интерактивная модель. Можно крутить, менять виды.</p>
+    
+    <iframe class="model-frame" src="models/statmec.html" title="STATMEC 250 3D"></iframe>
+    
+    <p style="margin-top: 16px; color: #888; font-size: 14px;">
+      Если модель не загрузилась — открой в новой вкладке: 
+      <a href="models/statmec.html" target="_blank" style="color: #4ade80;">открыть модель</a>
+    </p>
   </section>
 
   <section id="contacts">
