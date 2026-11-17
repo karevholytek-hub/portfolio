@@ -11,9 +11,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #0f0f0f; color: #eee; line-height: 1.5; }
     .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    h1 { text-align: center; margin-bottom: 40px; font-weight: 500; }
+    h1 { text-align: center; margin-bottom: 50px; font-weight: 500; }
 
-    /* Product Card */
     .product-card {
       background: #1a1a1a;
       border-radius: 16px;
@@ -22,8 +21,7 @@
       grid-template-columns: 1fr 140px;
       gap: 16px;
       padding: 20px;
-      max-width: 900px;
-      margin: 0 auto;
+      margin-bottom: 40px;
     }
     .main-image {
       width: 100%;
@@ -80,8 +78,9 @@
   <div class="container">
     <h1>Портфолио</h1>
 
-    <div class="product-card" id="product">
-      <img class="main-image" id="mainImg" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80" alt="Оверсайз худи">
+    <!-- Товар 1 -->
+    <div class="product-card" data-product>
+      <img class="main-image" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80" alt="Оверсайз худи">
       <div class="thumbs">
         <img class="thumb active" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300&q=80" data-full="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80" alt="">
         <img class="thumb" src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=300&q=80" data-full="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80" alt="">
@@ -91,20 +90,70 @@
       <div class="info">
         <div class="badge">СВОБОДНАЯ ПОСАДКА</div>
         <div class="title">ОВЕРСАЙЗ ХУДИ</div>
-        <p class="desc">Качественный оверсайз худи. Капюшон, манжеты, карман. Кликни по миниатюрам справа — фото меняется без перезагрузки страницы.</p>
+        <p class="desc">Качественный оверсайз худи. Капюшон, манжеты, карман кенгуру. Кликни по миниатюрам — фото меняется без перезагрузки.</p>
+      </div>
+    </div>
+
+    <!-- Товар 2 -->
+    <div class="product-card" data-product>
+      <img class="main-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="Кроссовки">
+      <div class="thumbs">
+        <img class="thumb active" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" data-full="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=80" data-full="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&q=80" data-full="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=300&q=80" data-full="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&q=80" alt="">
+      </div>
+      <div class="info">
+        <div class="badge">НОВИНКА</div>
+        <div class="title">КРОССОВКИ AIR</div>
+        <p class="desc">Лёгкие и стильные кроссовки. Комфорт на весь день. Несколько ракурсов в галерее.</p>
+      </div>
+    </div>
+
+    <!-- Товар 3 -->
+    <div class="product-card" data-product>
+      <img class="main-image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Часы">
+      <div class="thumbs">
+        <img class="thumb active" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&q=80" data-full="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=300&q=80" data-full="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=300&q=80" data-full="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=300&q=80" data-full="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&q=80" alt="">
+      </div>
+      <div class="info">
+        <div class="badge">ЛИМИТИРОВАНО</div>
+        <div class="title">ЧАСЫ CLASSIC</div>
+        <p class="desc">Элегантные наручные часы. Металлический корпус, сапфировое стекло. Подходят и к офису, и к повседневной образу.</p>
+      </div>
+    </div>
+
+    <!-- Товар 4 -->
+    <div class="product-card" data-product>
+      <img class="main-image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80" alt="Наушники">
+      <div class="thumbs">
+        <img class="thumb active" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80" data-full="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=300&q=80" data-full="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=300&q=80" data-full="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&q=80" alt="">
+        <img class="thumb" src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&q=80" data-full="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80" alt="">
+      </div>
+      <div class="info">
+        <div class="badge">ПРЕМИУМ</div>
+        <div class="title">НАУШНИКИ PRO</div>
+        <p class="desc">Беспроводные наушники с активным шумоподавлением. До 30 часов работы. Идеальны для музыки и звонков.</p>
       </div>
     </div>
   </div>
 
   <script>
-    const mainImg = document.getElementById('mainImg');
-    const thumbs = document.querySelectorAll('.thumb');
+    document.querySelectorAll('[data-product]').forEach(card => {
+      const mainImg = card.querySelector('.main-image');
+      const thumbs = card.querySelectorAll('.thumb');
 
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        mainImg.src = thumb.dataset.full;
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          mainImg.src = thumb.dataset.full;
+          thumbs.forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        });
       });
     });
   </script>
