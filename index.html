@@ -60,19 +60,45 @@
     .nav-links a:hover { color: #7c3aed; }
 
     .hero {
-      max-width: 1100px; margin: 0 auto; padding: 48px 16px 36px;
+      max-width: 1100px; margin: 0 auto; padding: 36px 16px 28px;
       text-align: center;
       position: relative;
       z-index: 1;
     }
     .hero h1 {
-      font-size: 42px; font-weight: 700; margin-bottom: 10px;
+      font-size: 42px; font-weight: 700; margin-bottom: 8px;
       letter-spacing: -1px;
       color: #111;
     }
     .hero p {
       font-size: 16px; color: #333;
-      max-width: 480px; margin: 0 auto 20px;
+      max-width: 480px; margin: 0 auto 16px;
+    }
+    .hero-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .hero-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .btn {
       display: inline-block;
@@ -278,9 +304,11 @@
       .nav-links { gap: 8px; }
       .nav-links a { font-size: 12px; }
 
-      .hero { padding: 28px 10px 24px; }
+      .hero { padding: 20px 10px 16px; }
       .hero h1 { font-size: 28px; }
-      .hero p { font-size: 14px; margin-bottom: 14px; }
+      .hero p { font-size: 14px; margin-bottom: 12px; }
+      .hero-icon { width: 48px; height: 48px; font-size: 22px; }
+      .hero-icons { gap: 10px; }
 
       section { padding: 24px 10px; }
       section h2 { font-size: 22px; }
@@ -323,6 +351,13 @@
   <div class="hero gelatin">
     <h1>Дизайн и 3D</h1>
     <p>Визитки, буклеты, упаковка, сайты и интерактивные 3D-модели.</p>
+    <div class="hero-icons">
+      <div class="hero-icon" title="Визитки">💼</div>
+      <div class="hero-icon" title="Буклеты">📘</div>
+      <div class="hero-icon" title="Упаковка">📦</div>
+      <div class="hero-icon" title="Сайт">💻</div>
+      <div class="hero-icon" title="3D">🎨</div>
+    </div>
     <a href="#portfolio" class="btn">Смотреть работы</a>
   </div>
 
