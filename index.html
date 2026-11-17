@@ -20,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* Real air bubbles */
     .bubbles {
       position: fixed;
       inset: 0;
@@ -43,7 +42,6 @@
       100% { transform: translateY(-20vh) scale(1); opacity: 0; }
     }
 
-    /* Gelatin elements */
     header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.45);
@@ -151,16 +149,50 @@
     .cat-card h3 { font-size: 20px; margin-bottom: 6px; font-weight: 600; color: #111; }
     .cat-card p { color: #444; font-size: 14px; }
 
+    /* Product card */
+    .product-card {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr 140px;
+      gap: 16px;
+      padding: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .main-wrap {
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.3);
+      border-radius: 14px;
+      min-height: 280px;
+      overflow: hidden;
+    }
+    .main-image {
+      max-width: 100%; max-height: 70vh; width: auto; height: auto;
+      object-fit: contain; border-radius: 12px;
+    }
+    .thumbs { display: flex; flex-direction: column; gap: 10px; }
+    .thumb {
+      width: 100%; height: 90px; object-fit: contain;
+      background: rgba(255,255,255,0.3); border-radius: 10px; cursor: pointer;
+      border: 3px solid transparent; transition: border 0.2s, opacity 0.2s; opacity: 0.75;
+    }
+    .thumb.active, .thumb:hover { border-color: #7c3aed; opacity: 1; }
+    .product-info { grid-column: 1 / -1; padding-top: 8px; }
+    .product-title { font-size: 24px; font-weight: 600; margin-bottom: 6px; }
+    .product-desc { color: #555; font-size: 15px; }
+
     .model-box {
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255,255,255,0.65);
       border-radius: 20px;
       padding: 36px 20px;
       text-align: center;
       margin-top: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     }
     .model-box h3 { margin-bottom: 6px; font-size: 24px; color: #111; }
     .model-box p { color: #444; margin-bottom: 20px; font-size: 15px; }
@@ -181,7 +213,6 @@
       align-items: center;
       justify-content: center;
       color: #666;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
     }
 
     footer {
@@ -218,6 +249,11 @@
 
       .categories { grid-template-columns: 1fr; gap: 12px; }
       .cat-card { padding: 20px 16px; }
+
+      .product-card { grid-template-columns: 1fr; }
+      .main-wrap { min-height: 220px; }
+      .thumbs { flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
+      .thumb { min-width: 80px; width: 80px; height: 80px; }
 
       .model-box { padding: 28px 16px; }
       .model-box h3 { font-size: 22px; }
@@ -264,6 +300,23 @@
   <section id="portfolio" class="gelatin">
     <h2>Работы</h2>
     <p class="section-desc">Разделы будут дополняться.</p>
+
+    <div class="product-card" data-product>
+      <div class="main-wrap">
+        <img id="mainPhoto" class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Худи">
+      </div>
+      <div class="thumbs">
+        <img class="thumb active" src="https://i.img402.dev/nhe7w6qcad.png" onclick="changeImage(this)">
+        <img class="thumb" src="https://i.img402.dev/jo598488mj.png" onclick="changeImage(this)">
+        <img class="thumb" src="https://i.img402.dev/g5226yd7fb.png" onclick="changeImage(this)">
+        <img class="thumb" src="https://i.img402.dev/k8z0cwix61.png" onclick="changeImage(this)">
+        <img class="thumb" src="https://i.img402.dev/h5oy4luy2b.png" onclick="changeImage(this)">
+      </div>
+      <div class="product-info">
+        <div class="product-title">Худи</div>
+        <div class="product-desc">Пример карточки товара с галереей</div>
+      </div>
+    </div>
 
     <div class="categories">
       <a href="#vizitki" class="cat-card gelatin">
@@ -324,6 +377,12 @@
       b.style.animationDuration = (Math.random() * 12 + 8) + 's';
       b.style.animationDelay = (Math.random() * 10) + 's';
       container.appendChild(b);
+    }
+
+    function changeImage(thumb) {
+      document.getElementById('mainPhoto').src = thumb.src;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
     }
 
     const gelatinEls = document.querySelectorAll('.gelatin');
