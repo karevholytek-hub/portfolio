@@ -144,65 +144,37 @@
     }
     .about-text p { margin-bottom: 10px; color: #222; font-size: 15px; }
 
-    .accordion {
+    .cats {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
     }
-    .acc-item {
+    .cat-block {
       background: rgba(255,255,255,0.5);
       backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.65);
       border-radius: 16px;
-      overflow: hidden;
+      padding: 18px 20px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
-    .acc-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 18px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .acc-title {
-      font-size: 17px;
+    .cat-name {
+      font-size: 18px;
       font-weight: 600;
       color: #111;
-      flex: 1;
+      margin-bottom: 10px;
     }
-    .acc-arrow {
-      transition: transform 0.25s;
-      color: #666;
-      font-size: 14px;
-    }
-    .acc-item.open .acc-arrow { transform: rotate(180deg); }
-    .acc-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    .acc-item.open .acc-body { max-height: 400px; }
-    .acc-content {
-      padding: 0 18px 16px 18px;
-    }
-    .acc-content ul {
-      list-style: none;
+    .tags {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .acc-content li {
-      font-size: 14px;
-      color: #333;
-      padding-left: 14px;
-      position: relative;
-    }
-    .acc-content li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: #7c3aed;
+    .tag {
+      background: rgba(124,58,237,0.12);
+      color: #4c1d95;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
     }
 
     .product-card {
@@ -305,8 +277,8 @@
       .about-grid { grid-template-columns: 1fr; gap: 12px; }
       .photo-placeholder { height: 120px; }
 
-      .acc-header { padding: 12px 14px; }
-      .acc-content { padding: 0 14px 12px 14px; }
+      .cat-block { padding: 14px 16px; }
+      .tag { font-size: 12px; padding: 5px 10px; }
 
       .product-card { grid-template-columns: 1fr; padding: 10px; margin-bottom: 16px; }
       .main-wrap { min-height: 140px; }
@@ -383,94 +355,60 @@
       </div>
     </div>
 
-    <div class="accordion">
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-title">Визитки</div>
-          <div class="acc-arrow">▼</div>
-        </div>
-        <div class="acc-body">
-          <div class="acc-content">
-            <ul>
-              <li>Генерация макетов по брифу</li>
-              <li>Подбор шрифтов и цветов</li>
-              <li>Карточки товаров с QR-кодом</li>
-              <li>Адаптация под печать</li>
-              <li>Варианты лица и оборота</li>
-            </ul>
-          </div>
+    <div class="cats">
+      <div class="cat-block">
+        <div class="cat-name">Визитки</div>
+        <div class="tags">
+          <span class="tag">Корпоративные</span>
+          <span class="tag">Креативные</span>
+          <span class="tag">С QR-кодом</span>
+          <span class="tag">Двухсторонние</span>
+          <span class="tag">Под печать</span>
         </div>
       </div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-title">Буклеты</div>
-          <div class="acc-arrow">▼</div>
-        </div>
-        <div class="acc-body">
-          <div class="acc-content">
-            <ul>
-              <li>Вёрстка многостраничных буклетов</li>
-              <li>Иллюстрации и инфографика</li>
-              <li>Карточки услуг и товаров</li>
-              <li>Листовки и презентации</li>
-              <li>Адаптация текста под формат</li>
-            </ul>
-          </div>
+      <div class="cat-block">
+        <div class="cat-name">Полиграфия</div>
+        <div class="tags">
+          <span class="tag">Буклеты</span>
+          <span class="tag">Листовки</span>
+          <span class="tag">Плакаты</span>
+          <span class="tag">Афиши</span>
+          <span class="tag">Презентации</span>
+          <span class="tag">Каталоги</span>
         </div>
       </div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-title">Упаковка</div>
-          <div class="acc-arrow">▼</div>
-        </div>
-        <div class="acc-body">
-          <div class="acc-content">
-            <ul>
-              <li>Дизайн этикеток и коробок</li>
-              <li>Мокапы упаковки на продукте</li>
-              <li>Карточки товаров для маркетплейсов</li>
-              <li>Варианты под разные форматы</li>
-              <li>Визуализация на полке</li>
-            </ul>
-          </div>
+      <div class="cat-block">
+        <div class="cat-name">Упаковка</div>
+        <div class="tags">
+          <span class="tag">Этикетки</span>
+          <span class="tag">Коробки</span>
+          <span class="tag">Пакеты</span>
+          <span class="tag">Мокапы</span>
+          <span class="tag">Карточки товаров</span>
         </div>
       </div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-title">Дизайн сайта</div>
-          <div class="acc-arrow">▼</div>
-        </div>
-        <div class="acc-body">
-          <div class="acc-content">
-            <ul>
-              <li>Макеты страниц и блоков</li>
-              <li>Карточки товаров и услуг</li>
-              <li>Адаптивная вёрстка под мобильные</li>
-              <li>Иконки и иллюстрации для сайта</li>
-              <li>Прототипы лендингов</li>
-            </ul>
-          </div>
+      <div class="cat-block">
+        <div class="cat-name">Веб-дизайн</div>
+        <div class="tags">
+          <span class="tag">Лендинги</span>
+          <span class="tag">Карточки товаров</span>
+          <span class="tag">Иконки</span>
+          <span class="tag">Адаптив</span>
+          <span class="tag">Прототипы</span>
         </div>
       </div>
 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          <div class="acc-title">3D моделирование</div>
-          <div class="acc-arrow">▼</div>
-        </div>
-        <div class="acc-body">
-          <div class="acc-content">
-            <ul>
-              <li>Интерактивные 3D-модели товаров</li>
-              <li>Визуализация стендов и оборудования</li>
-              <li>Карточки с 3D-просмотром</li>
-              <li>Анимация сборки и работы</li>
-              <li>Экспорт во веб и PDF</li>
-            </ul>
-          </div>
+      <div class="cat-block">
+        <div class="cat-name">3D</div>
+        <div class="tags">
+          <span class="tag">Модели товаров</span>
+          <span class="tag">Визуализация</span>
+          <span class="tag">Анимация</span>
+          <span class="tag">Стенды</span>
+          <span class="tag">Интерактив</span>
         </div>
       </div>
     </div>
@@ -517,11 +455,6 @@
       document.getElementById('mainPhoto').src = thumb.src;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
-    }
-
-    function toggleAcc(header) {
-      const item = header.parentElement;
-      item.classList.toggle('open');
     }
 
     const gelatinEls = document.querySelectorAll('.gelatin');
