@@ -3,126 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Портфолио</title>
-  <meta property="og:title" content="Оверсайз Худи">
-  <meta property="og:description" content="Карточка товара с галереей — любые пропорции">
+  <title>Портфолио — Дизайн</title>
+  <meta property="og:title" content="Портфолио">
+  <meta property="og:description" content="Визитки, буклеты, упаковка, дизайн сайтов">
   <meta property="og:image" content="https://i.img402.dev/nhe7w6qcad.png">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #0f0f0f; color: #eee; line-height: 1.5; }
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-    h1 { text-align: center; margin-bottom: 50px; font-weight: 500; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f0f0f; color: #eee; line-height: 1.6; }
 
-    .product-card {
-      background: #1a1a1a;
-      border-radius: 16px;
-      display: grid;
-      grid-template-columns: 1fr 160px;
-      gap: 16px;
-      padding: 20px;
-      margin-bottom: 40px;
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,15,15,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+      padding: 16px 0;
     }
+    nav {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 20px; font-weight: 600; color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; transition: color 0.2s; }
+    .nav-links a:hover { color: #4ade80; }
 
+    /* Hero */
+    .hero {
+      max-width: 1200px; margin: 0 auto; padding: 100px 20px 80px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 56px; font-weight: 700; margin-bottom: 16px; }
+    .hero p { font-size: 20px; color: #aaa; max-width: 600px; margin: 0 auto 30px; }
+    .btn {
+      display: inline-block; background: #4ade80; color: #000;
+      padding: 12px 28px; border-radius: 30px; text-decoration: none;
+      font-weight: 600; transition: transform 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* Sections */
+    section { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+    section h2 { font-size: 36px; margin-bottom: 16px; }
+    .section-desc { color: #aaa; margin-bottom: 40px; max-width: 700px; }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+    .about-text p { margin-bottom: 16px; color: #ccc; }
+
+    /* Categories */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .cat-card {
+      background: #1a1a1a; border-radius: 16px; padding: 28px;
+      text-decoration: none; color: inherit;
+      border: 1px solid #2a2a2a;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cat-card:hover { border-color: #4ade80; transform: translateY(-4px); }
+    .cat-card h3 { font-size: 22px; margin-bottom: 8px; }
+    .cat-card p { color: #999; font-size: 15px; }
+
+    /* Product card (gallery) */
+    .product-card {
+      background: #1a1a1a; border-radius: 16px;
+      display: grid; grid-template-columns: 1fr 160px;
+      gap: 16px; padding: 20px; margin-bottom: 40px;
+    }
     .main-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111;
-      border-radius: 12px;
-      min-height: 300px;
-      max-height: 80vh;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #111; border-radius: 12px;
+      min-height: 300px; max-height: 80vh; overflow: hidden;
     }
     .main-image {
-      max-width: 100%;
-      max-height: 80vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 12px;
+      max-width: 100%; max-height: 80vh; width: auto; height: auto;
+      object-fit: contain; border-radius: 12px;
     }
-
-    .thumbs {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-self: start;
-    }
+    .thumbs { display: flex; flex-direction: column; gap: 12px; align-self: start; }
     .thumb {
-      width: 100%;
-      height: 100px;
-      object-fit: contain;
-      background: #111;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: border 0.2s, opacity 0.2s;
-      opacity: 0.75;
+      width: 100%; height: 100px; object-fit: contain;
+      background: #111; border-radius: 8px; cursor: pointer;
+      border: 3px solid transparent; transition: border 0.2s, opacity 0.2s; opacity: 0.75;
     }
-    .thumb.active, .thumb:hover {
-      border-color: #4ade80;
-      opacity: 1;
-    }
-
-    .info {
-      grid-column: 1 / -1;
-      padding-top: 10px;
-    }
+    .thumb.active, .thumb:hover { border-color: #4ade80; opacity: 1; }
+    .info { grid-column: 1 / -1; padding-top: 10px; }
     .title { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
     .badge {
-      display: inline-block;
-      background: #4ade80;
-      color: #000;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 12px;
+      display: inline-block; background: #4ade80; color: #000;
+      padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 12px;
     }
     .desc { color: #aaa; font-size: 16px; }
 
+    footer {
+      text-align: center; padding: 40px 20px; color: #666; border-top: 1px solid #222;
+    }
+
     @media (max-width: 800px) {
+      .hero h1 { font-size: 36px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; font-size: 14px; }
       .product-card { grid-template-columns: 1fr; }
       .main-wrap { max-height: 70vh; }
       .main-image { max-height: 70vh; }
-      .thumbs {
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 8px;
-      }
+      .thumbs { flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
       .thumb { min-width: 90px; width: 90px; height: 90px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Портфолио</h1>
+  <header>
+    <nav>
+      <a href="#" class="logo">Портфолио</a>
+      <div class="nav-links">
+        <a href="#about">Обо мне</a>
+        <a href="#portfolio">Работы</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="product-card" data-product>
-      <div class="main-wrap">
-        <img class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Оверсайз худи">
+  <div class="hero">
+    <h1>Дизайн, который работает</h1>
+    <p>Визитки, буклеты, упаковка, сайты и другие визуальные решения.</p>
+    <a href="#portfolio" class="btn">Смотреть работы</a>
+  </div>
+
+  <section id="about">
+    <h2>Обо мне</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Занимаюсь дизайном и визуальными решениями для бизнеса. Делаю визитки, буклеты, упаковку, оформление сайтов и другие материалы.</p>
+        <p>Работаю с вниманием к деталям и структуре. Каждый проект — это сочетание функциональности и внешнего вида.</p>
+        <p>Если нужен дизайн — напишите, обсудим задачу.</p>
       </div>
-      <div class="thumbs">
-        <img class="thumb active" src="https://i.img402.dev/nhe7w6qcad.png" data-full="https://i.img402.dev/nhe7w6qcad.png" alt="">
-        <img class="thumb" src="https://i.img402.dev/jo598488mj.png" data-full="https://i.img402.dev/jo598488mj.png" alt="">
-        <img class="thumb" src="https://i.img402.dev/g5226yd7fb.png" data-full="https://i.img402.dev/g5226yd7fb.png" alt="">
-        <img class="thumb" src="https://i.img402.dev/k8z0cwix61.png" data-full="https://i.img402.dev/k8z0cwix61.png" alt="">
-        <img class="thumb" src="https://i.img402.dev/h5oy4luy2b.png" data-full="https://i.img402.dev/h5oy4luy2b.png" alt="">
-      </div>
-      <div class="info">
-        <div class="badge">СВОБОДНЫЙ КРОЙ</div>
-        <div class="title">ОВЕРСАЙЗ ХУДИ</div>
-        <p class="desc">Комфорт в каждом движении. Мягкий хлопок, свободный крой, карман-кенгуру.<br>
-        Поддерживает любые пропорции: 16:9, 9:16, квадрат и другие. Картинка показывается целиком.</p>
+      <div>
+        <!-- Можно добавить фото позже -->
+        <div style="background:#1a1a1a; border-radius:16px; height:320px; display:flex; align-items:center; justify-content:center; color:#666;">
+          Фото / аватар
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Работы</h2>
+    <p class="section-desc">Разделы будут дополняться. Нажмите на категорию, чтобы перейти к примерам.</p>
+
+    <div class="categories">
+      <a href="#vizitki" class="cat-card">
+        <h3>Визитки</h3>
+        <p>Дизайн визитных карточек</p>
+      </a>
+      <a href="#buklety" class="cat-card">
+        <h3>Буклеты</h3>
+        <p>Буклеты, листовки, презентации</p>
+      </a>
+      <a href="#upakovka" class="cat-card">
+        <h3>Упаковка</h3>
+        <p>Дизайн упаковки и этикеток</p>
+      </a>
+      <a href="#sait" class="cat-card">
+        <h3>Дизайн сайта</h3>
+        <p>Оформление и макеты сайтов</p>
+      </a>
+    </div>
+
+    <!-- Пример карточки (можно дублировать под каждый раздел) -->
+    <div style="margin-top: 60px;" id="example">
+      <h3 style="margin-bottom: 20px;">Пример работы</h3>
+      <div class="product-card" data-product>
+        <div class="main-wrap">
+          <img class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Пример">
+        </div>
+        <div class="thumbs">
+          <img class="thumb active" src="https://i.img402.dev/nhe7w6qcad.png" data-full="https://i.img402.dev/nhe7w6qcad.png" alt="">
+          <img class="thumb" src="https://i.img402.dev/jo598488mj.png" data-full="https://i.img402.dev/jo598488mj.png" alt="">
+          <img class="thumb" src="https://i.img402.dev/g5226yd7fb.png" data-full="https://i.img402.dev/g5226yd7fb.png" alt="">
+          <img class="thumb" src="https://i.img402.dev/k8z0cwix61.png" data-full="https://i.img402.dev/k8z0cwix61.png" alt="">
+          <img class="thumb" src="https://i.img402.dev/h5oy4luy2b.png" data-full="https://i.img402.dev/h5oy4luy2b.png" alt="">
+        </div>
+        <div class="info">
+          <div class="badge">ПРИМЕР</div>
+          <div class="title">ОВЕРСАЙЗ ХУДИ</div>
+          <p class="desc">Карточка с галереей. Поддерживает любые пропорции. Кликни по миниатюрам.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <h2>Контакты</h2>
+    <p class="section-desc">Напишите, если нужен дизайн или есть вопросы.</p>
+    <p style="color:#ccc;">Telegram / Email — добавим позже</p>
+  </section>
+
+  <footer>
+    Портфолио · 2026
+  </footer>
 
   <script>
     document.querySelectorAll('[data-product]').forEach(card => {
       const mainImg = card.querySelector('.main-image');
       const thumbs = card.querySelectorAll('.thumb');
-
       thumbs.forEach(thumb => {
         thumb.addEventListener('click', () => {
           mainImg.src = thumb.dataset.full;
