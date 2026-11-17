@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Портфолио — Дизайн</title>
   <meta property="og:title" content="Портфолио">
-  <meta property="og:description" content="Визитки, буклеты, упаковка, 3D модели">
+  <meta property="og:description" content="Визитки, буклеты, упаковка, сайты">
   <meta property="og:image" content="https://i.img402.dev/nhe7w6qcad.png">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -167,9 +167,16 @@
     }
 
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
     }
-    .about-text p { margin-bottom: 10px; color: #222; font-size: 15px; }
+    .about-text p { margin-bottom: 12px; color: #222; font-size: 15px; line-height: 1.6; }
+    .about-photo {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      object-fit: cover;
+      max-height: 420px;
+    }
 
     .product-card {
       background: rgba(255,255,255,0.55);
@@ -224,19 +231,6 @@
       font-size: 12px;
     }
 
-    .photo-placeholder {
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 16px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: 14px;
-    }
-
     footer {
       text-align: center;
       padding: 24px 12px;
@@ -270,8 +264,8 @@
       section h2 { font-size: 22px; }
       .section-desc { font-size: 13px; margin-bottom: 14px; }
 
-      .about-grid { grid-template-columns: 1fr; gap: 12px; }
-      .photo-placeholder { height: 120px; }
+      .about-grid { grid-template-columns: 1fr; gap: 16px; }
+      .about-photo { max-height: 280px; }
 
       .product-card { grid-template-columns: 1fr; padding: 10px; margin-bottom: 16px; }
       .main-wrap { min-height: 140px; }
@@ -301,8 +295,8 @@
   </header>
 
   <div class="hero gelatin">
-    <h1>Дизайн и 3D</h1>
-    <p>Визитки, буклеты, упаковка, сайты и интерактивные 3D-модели.</p>
+    <h1>Дизайн</h1>
+    <p>Визитки, буклеты, упаковка, полиграфия и сайты.</p>
     <div class="hero-icons">
       <div class="icon-wrap">
         <div class="hero-icon">💼</div>
@@ -357,13 +351,12 @@
     <h2>Обо мне</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>Занимаюсь дизайном и визуальными решениями для бизнеса. Делаю визитки, буклеты, упаковку, оформление сайтов и 3D-модели.</p>
-        <p>Работаю с вниманием к деталям и структуре. Каждый проект — это сочетание функциональности и внешнего вида.</p>
-        <p>Если нужен дизайн или 3D — напишите, обсудим задачу.</p>
+        <p>Более 15 лет занимаюсь дизайном для бизнеса. Визитки, буклеты, упаковка, полиграфия, оформление сайтов и карточек товаров — это то, что я делаю каждый день.</p>
+        <p>Работал с десятками компаний — от маленьких брендов до крупных заказчиков. Знаю, как сделать так, чтобы выглядело дорого и работало на продажи.</p>
+        <p>Каждый макет проходит через десятки итераций. Не люблю шаблоны и готовые решения — делаю под задачу, с учётом тона бренда и того, как это будет выглядеть в печати и на экране.</p>
+        <p>Если нужен дизайн, который не стыдно исправлять — напишите. Разберёмся быстро.</p>
       </div>
-      <div class="photo-placeholder">
-        Фото / аватар
-      </div>
+      <img class="about-photo" src="https://karevholytek-hub.github.io/portfolio/designer.jpg" alt="Дизайнер">
     </div>
   </section>
 
