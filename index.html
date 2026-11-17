@@ -20,27 +20,21 @@
       overflow-x: hidden;
     }
 
-    .bubbles {
+    /* Peeking cat */
+    .cat-peek {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bubble {
-      position: absolute;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.15) 40%, transparent 70%);
-      border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: inset -2px -2px 6px rgba(255,255,255,0.5), 0 0 8px rgba(255,255,255,0.3);
-      animation: float linear infinite;
+      background: url('https://i.img402.dev/65fwa93931.jpg') center 30% / cover;
+      border: 3px solid rgba(255,255,255,0.7);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 50;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: auto;
     }
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0.6); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
-    }
+    .cat-peek:active { transform: scale(0.9); }
 
     header {
       position: sticky; top: 0; z-index: 100;
@@ -128,6 +122,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
+      position: relative;
     }
     .cat-card {
       background: rgba(255,255,255,0.5);
@@ -140,6 +135,7 @@
       color: inherit;
       transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      position: relative;
     }
     .cat-card:hover {
       background: rgba(255,255,255,0.75);
@@ -149,7 +145,6 @@
     .cat-card h3 { font-size: 20px; margin-bottom: 6px; font-weight: 600; color: #111; }
     .cat-card p { color: #444; font-size: 14px; }
 
-    /* Product card */
     .product-card {
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(14px);
@@ -230,40 +225,42 @@
     }
 
     @media (max-width: 700px) {
-      header { padding: 12px 0; }
-      nav { padding: 0 12px; flex-wrap: wrap; gap: 8px; }
-      .logo { font-size: 17px; }
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 13px; }
+      header { padding: 10px 0; }
+      nav { padding: 0 10px; }
+      .logo { font-size: 16px; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 12px; }
 
-      .hero { padding: 60px 16px 50px; }
-      .hero h1 { font-size: 36px; letter-spacing: -0.8px; }
-      .hero p { font-size: 16px; margin-bottom: 24px; }
+      .hero { padding: 40px 12px 36px; }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 15px; margin-bottom: 18px; }
 
-      section { padding: 48px 16px; }
-      section h2 { font-size: 28px; }
-      .section-desc { font-size: 15px; margin-bottom: 28px; }
+      section { padding: 36px 12px; }
+      section h2 { font-size: 26px; }
+      .section-desc { font-size: 14px; margin-bottom: 20px; }
 
-      .about-grid { grid-template-columns: 1fr; gap: 20px; }
-      .photo-placeholder { height: 200px; }
+      .about-grid { grid-template-columns: 1fr; gap: 16px; }
+      .photo-placeholder { height: 160px; }
 
-      .categories { grid-template-columns: 1fr; gap: 12px; }
-      .cat-card { padding: 20px 16px; }
+      .categories { grid-template-columns: 1fr; gap: 10px; }
+      .cat-card { padding: 16px 14px; }
 
-      .product-card { grid-template-columns: 1fr; }
-      .main-wrap { min-height: 220px; }
-      .thumbs { flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
-      .thumb { min-width: 80px; width: 80px; height: 80px; }
+      .product-card { grid-template-columns: 1fr; padding: 14px; margin-bottom: 24px; }
+      .main-wrap { min-height: 180px; }
+      .thumbs { flex-direction: row; overflow-x: auto; }
+      .thumb { min-width: 70px; width: 70px; height: 70px; }
 
-      .model-box { padding: 28px 16px; }
-      .model-box h3 { font-size: 22px; }
+      .model-box { padding: 24px 14px; }
+      .model-box h3 { font-size: 20px; }
 
-      .btn { padding: 12px 24px; font-size: 14px; }
+      .btn { padding: 11px 20px; font-size: 13px; }
+
+      .cat-peek { width: 70px; height: 70px; }
     }
   </style>
 </head>
 <body>
-  <div class="bubbles" id="bubbles"></div>
+  <div class="cat-peek" id="catPeek" title="Кошка"></div>
 
   <header class="gelatin">
     <nav>
@@ -318,7 +315,7 @@
       </div>
     </div>
 
-    <div class="categories">
+    <div class="categories" id="categories">
       <a href="#vizitki" class="cat-card gelatin">
         <h3>Визитки</h3>
         <p>Дизайн визитных карточек</p>
@@ -366,25 +363,37 @@
   </footer>
 
   <script>
-    const container = document.getElementById('bubbles');
-    for (let i = 0; i < 25; i++) {
-      const b = document.createElement('div');
-      b.className = 'bubble';
-      const size = Math.random() * 50 + 15;
-      b.style.width = size + 'px';
-      b.style.height = size + 'px';
-      b.style.left = Math.random() * 100 + '%';
-      b.style.animationDuration = (Math.random() * 12 + 8) + 's';
-      b.style.animationDelay = (Math.random() * 10) + 's';
-      container.appendChild(b);
-    }
-
     function changeImage(thumb) {
       document.getElementById('mainPhoto').src = thumb.src;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     }
 
+    // Peeking cat
+    const cat = document.getElementById('catPeek');
+    const cards = document.querySelectorAll('.cat-card');
+    let catIndex = 0;
+
+    function moveCat() {
+      if (cards.length === 0) return;
+      const card = cards[catIndex % cards.length];
+      const rect = card.getBoundingClientRect();
+      const size = parseInt(getComputedStyle(cat).width) || 80;
+      cat.style.left = (rect.left + rect.width - size * 0.4) + 'px';
+      cat.style.top = (rect.top + window.scrollY + 10) + 'px';
+      catIndex++;
+    }
+
+    cat.addEventListener('click', () => {
+      moveCat();
+    });
+
+    // Initial position after load
+    window.addEventListener('load', () => {
+      setTimeout(moveCat, 500);
+    });
+
+    // Gelatin effect
     const gelatinEls = document.querySelectorAll('.gelatin');
     let pressing = false;
     let pressX = 0, pressY = 0;
@@ -415,6 +424,7 @@
     }
 
     document.addEventListener('pointerdown', (e) => {
+      if (e.target === cat) return;
       pressing = true;
       pressX = e.clientX;
       pressY = e.clientY;
