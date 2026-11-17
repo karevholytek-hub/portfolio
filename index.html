@@ -20,21 +20,28 @@
       overflow-x: hidden;
     }
 
-    /* Peeking cat */
-    .cat-peek {
+    /* Running cat */
+    .cat-run {
       position: fixed;
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: url('https://i.img402.dev/65fwa93931.jpg') center 30% / cover;
       border: 3px solid rgba(255,255,255,0.7);
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       cursor: pointer;
       z-index: 50;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: auto;
+      transition: left 0.8s ease-in-out, top 0.8s ease-in-out;
     }
-    .cat-peek:active { transform: scale(0.9); }
+    .cat-run.running {
+      animation: bounce 0.4s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.05); }
+    }
+    .cat-run:active { transform: scale(0.9); }
 
     header {
       position: sticky; top: 0; z-index: 100;
@@ -122,7 +129,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
-      position: relative;
     }
     .cat-card {
       background: rgba(255,255,255,0.5);
@@ -135,7 +141,6 @@
       color: inherit;
       transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
-      position: relative;
     }
     .cat-card:hover {
       background: rgba(255,255,255,0.75);
@@ -255,12 +260,12 @@
 
       .btn { padding: 11px 20px; font-size: 13px; }
 
-      .cat-peek { width: 70px; height: 70px; }
+      .cat-run { width: 64px; height: 64px; }
     }
   </style>
 </head>
 <body>
-  <div class="cat-peek" id="catPeek" title="Кошка"></div>
+  <div class="cat-run" id="catRun" title="Кошка"></div>
 
   <header class="gelatin">
     <nav>
@@ -315,7 +320,7 @@
       </div>
     </div>
 
-    <div class="categories" id="categories">
+    <div class="categories">
       <a href="#vizitki" class="cat-card gelatin">
         <h3>Визитки</h3>
         <p>Дизайн визитных карточек</p>
@@ -369,28 +374,47 @@
       thumb.classList.add('active');
     }
 
-    // Peeking cat
-    const cat = document.getElementById('catPeek');
-    const cards = document.querySelectorAll('.cat-card');
-    let catIndex = 0;
+    // Running cat across the whole screen
+    const cat = document.getElementById('catRun');
+    let catTimer = null;
 
-    function moveCat() {
-      if (cards.length === 0) return;
-      const card = cards[catIndex % cards.length];
-      const rect = card.getBoundingClientRect();
+    function randomPosition() {
       const size = parseInt(getComputedStyle(cat).width) || 80;
-      cat.style.left = (rect.left + rect.width - size * 0.4) + 'px';
-      cat.style.top = (rect.top + window.scrollY + 10) + 'px';
-      catIndex++;
+      const maxX = window.innerWidth - size - 10;
+      const maxY = window.innerHeight - size - 10;
+      return {
+        x: Math.max(10, Math.random() * maxX),
+        y: Math.max(10, Math.random() * maxY)
+      };
+    }
+
+    function moveCatRandom() {
+      const pos = randomPosition();
+      cat.classList.add('running');
+      cat.style.left = pos.x + 'px';
+      cat.style.top = pos.y + 'px';
+      setTimeout(() => cat.classList.remove('running'), 800);
+    }
+
+    function startCat() {
+      moveCatRandom();
+      catTimer = setInterval(moveCatRandom, 2200 + Math.random() * 1500);
     }
 
     cat.addEventListener('click', () => {
-      moveCat();
+      clearInterval(catTimer);
+      moveCatRandom();
+      setTimeout(startCat, 1000);
     });
 
-    // Initial position after load
-    window.addEventListener('load', () => {
-      setTimeout(moveCat, 500);
+    window.addEventListener('load', startCat);
+    window.addEventListener('resize', () => {
+      // keep cat on screen after resize
+      const size = parseInt(getComputedStyle(cat).width) || 80;
+      const left = parseFloat(cat.style.left) || 0;
+      const top = parseFloat(cat.style.top) || 0;
+      if (left > window.innerWidth - size) cat.style.left = (window.innerWidth - size - 10) + 'px';
+      if (top > window.innerHeight - size) cat.style.top = (window.innerHeight - size - 10) + 'px';
     });
 
     // Gelatin effect
