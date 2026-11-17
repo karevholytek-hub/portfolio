@@ -6,7 +6,6 @@
   <title>Портфолио — Дизайн</title>
   <meta property="og:title" content="Портфолио">
   <meta property="og:description" content="Визитки, буклеты, упаковка, сайты">
-  <meta property="og:image" content="https://i.img402.dev/nhe7w6qcad.png">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -19,239 +18,54 @@
       position: relative;
       overflow-x: hidden;
     }
-
-    .bubbles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.15) 45%, transparent 70%);
-      border: 1px solid rgba(255,255,255,0.45);
-      box-shadow: inset -2px -3px 8px rgba(255,255,255,0.4), 0 0 6px rgba(255,255,255,0.25);
-    }
-
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.45);
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-      padding: 10px 0;
-    }
-    nav {
-      max-width: 1100px; margin: 0 auto; padding: 0 12px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo {
-      font-size: 17px; font-weight: 600; color: #111; text-decoration: none;
-      letter-spacing: -0.3px;
-    }
+    .bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.15) 45%, transparent 70%); border: 1px solid rgba(255,255,255,0.45); box-shadow: inset -2px -3px 8px rgba(255,255,255,0.4), 0 0 6px rgba(255,255,255,0.25); }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.45); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.5); box-shadow: 0 4px 24px rgba(0,0,0,0.06); padding: 10px 0; }
+    nav { max-width: 1100px; margin: 0 auto; padding: 0 12px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 17px; font-weight: 600; color: #111; text-decoration: none; letter-spacing: -0.3px; }
     .nav-links { display: flex; gap: 16px; }
-    .nav-links a {
-      color: #222; text-decoration: none; font-size: 13px;
-      transition: color 0.25s;
-    }
+    .nav-links a { color: #222; text-decoration: none; font-size: 13px; transition: color 0.25s; }
     .nav-links a:hover { color: #7c3aed; }
-
-    .hero {
-      max-width: 1100px; margin: 0 auto; padding: 32px 16px 24px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-size: 42px; font-weight: 700; margin-bottom: 8px;
-      letter-spacing: -1px;
-      color: #111;
-    }
-    .hero p {
-      font-size: 16px; color: #333;
-      max-width: 480px; margin: 0 auto 20px;
-    }
-    .hero-icons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .icon-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      max-width: 140px;
-    }
-    .hero-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 34px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .hero-icon:hover {
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
-    }
-    .icon-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #111;
-    }
-    .icon-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 4px;
-    }
-    .icon-tag {
-      background: rgba(124,58,237,0.15);
-      color: #4c1d95;
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 500;
-    }
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(79,70,229,0.85));
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35), inset 0 1px 0 rgba(255,255,255,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-      backdrop-filter: blur(8px);
-      margin-top: 8px;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255,255,255,0.4);
-    }
-    .btn:active {
-      transform: translateY(1px) scale(0.98);
-    }
-
-    section {
-      max-width: 1100px; margin: 0 auto; padding: 40px 16px;
-      position: relative;
-      z-index: 1;
-    }
-    section h2 {
-      font-size: 28px; margin-bottom: 6px;
-      letter-spacing: -0.5px;
-      color: #111;
-    }
-    .section-desc {
-      color: #444;
-      margin-bottom: 20px;
-      max-width: 540px;
-      font-size: 15px;
-    }
-
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
-    }
+    .hero { max-width: 1100px; margin: 0 auto; padding: 32px 16px 24px; text-align: center; position: relative; z-index: 1; }
+    .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 8px; letter-spacing: -1px; color: #111; }
+    .hero p { font-size: 16px; color: #333; max-width: 480px; margin: 0 auto 20px; }
+    .hero-icons { display: flex; justify-content: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; max-width: 140px; }
+    .hero-icon { width: 72px; height: 72px; border-radius: 18px; background: rgba(255,255,255,0.6); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; font-size: 34px; box-shadow: 0 6px 20px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .hero-icon:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.14); }
+    .icon-label { font-size: 13px; font-weight: 600; color: #111; }
+    .icon-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+    .icon-tag { background: rgba(124,58,237,0.15); color: #4c1d95; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+    .btn { display: inline-block; background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(79,70,229,0.85)); color: #fff; padding: 12px 24px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35), inset 0 1px 0 rgba(255,255,255,0.3); transition: transform 0.2s, box-shadow 0.2s; backdrop-filter: blur(8px); margin-top: 8px; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255,255,255,0.4); }
+    .btn:active { transform: translateY(1px) scale(0.98); }
+    section { max-width: 1100px; margin: 0 auto; padding: 40px 16px; position: relative; z-index: 1; }
+    section h2 { font-size: 28px; margin-bottom: 6px; letter-spacing: -0.5px; color: #111; }
+    .section-desc { color: #444; margin-bottom: 20px; max-width: 540px; font-size: 15px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
     .about-text p { margin-bottom: 12px; color: #222; font-size: 15px; line-height: 1.6; }
-    .about-photo {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      object-fit: cover;
-      max-height: 420px;
-    }
-
-    .product-card {
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.65);
-      border-radius: 16px;
-      display: grid;
-      grid-template-columns: 1fr 110px;
-      gap: 12px;
-      padding: 14px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    }
-    .main-wrap {
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.3);
-      border-radius: 12px;
-      min-height: 200px;
-      overflow: hidden;
-    }
-    .main-image {
-      max-width: 100%; max-height: 60vh; width: auto; height: auto;
-      object-fit: contain; border-radius: 10px;
-    }
+    .about-photo { width: 100%; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); object-fit: cover; max-height: 420px; }
+    .product-card { background: rgba(255,255,255,0.55); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.65); border-radius: 16px; display: grid; grid-template-columns: 1fr 110px; gap: 12px; padding: 14px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .main-wrap { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.3); border-radius: 12px; min-height: 200px; overflow: hidden; }
+    .main-image { max-width: 100%; max-height: 60vh; width: auto; height: auto; object-fit: contain; border-radius: 10px; }
     .thumbs { display: flex; flex-direction: column; gap: 8px; }
-    .thumb {
-      width: 100%; height: 70px; object-fit: contain;
-      background: rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer;
-      border: 2px solid transparent; transition: border 0.2s, opacity 0.2s; opacity: 0.75;
-    }
+    .thumb { width: 100%; height: 70px; object-fit: contain; background: rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border 0.2s, opacity 0.2s; opacity: 0.75; }
     .thumb.active, .thumb:hover { border-color: #7c3aed; opacity: 1; }
     .product-info { grid-column: 1 / -1; padding-top: 4px; }
     .product-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
     .product-desc { color: #555; font-size: 14px; }
-
-    .model-box {
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.65);
-      border-radius: 16px;
-      padding: 24px 16px;
-      text-align: center;
-      margin-top: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
+    .model-box { background: rgba(255,255,255,0.55); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.65); border-radius: 16px; padding: 24px 16px; text-align: center; margin-top: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
     .model-box h3 { margin-bottom: 4px; font-size: 20px; color: #111; }
     .model-box p { color: #444; margin-bottom: 14px; font-size: 14px; }
-    .model-caption {
-      text-align: center;
-      margin-top: 12px;
-      color: #555;
-      font-size: 12px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px 12px;
-      color: #555;
-      border-top: 1px solid rgba(255,255,255,0.4);
-      font-size: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .gelatin {
-      transition: transform 0.12s ease-out;
-    }
-
+    .model-caption { text-align: center; margin-top: 12px; color: #555; font-size: 12px; }
+    footer { text-align: center; padding: 24px 12px; color: #555; border-top: 1px solid rgba(255,255,255,0.4); font-size: 12px; position: relative; z-index: 1; }
+    .gelatin { transition: transform 0.12s ease-out; }
     @media (max-width: 700px) {
       header { padding: 8px 0; }
       nav { padding: 0 10px; }
       .logo { font-size: 15px; }
       .nav-links { gap: 8px; }
       .nav-links a { font-size: 12px; }
-
       .hero { padding: 20px 10px 16px; }
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 14px; margin-bottom: 14px; }
@@ -259,29 +73,23 @@
       .icon-wrap { max-width: 100px; }
       .icon-label { font-size: 12px; }
       .icon-tag { font-size: 10px; padding: 2px 6px; }
-
       section { padding: 24px 10px; }
       section h2 { font-size: 22px; }
       .section-desc { font-size: 13px; margin-bottom: 14px; }
-
       .about-grid { grid-template-columns: 1fr; gap: 16px; }
       .about-photo { max-height: 280px; }
-
       .product-card { grid-template-columns: 1fr; padding: 10px; margin-bottom: 16px; }
       .main-wrap { min-height: 140px; }
       .thumbs { flex-direction: row; overflow-x: auto; }
       .thumb { min-width: 60px; width: 60px; height: 60px; }
-
       .model-box { padding: 18px 12px; }
       .model-box h3 { font-size: 18px; }
-
       .btn { padding: 10px 18px; font-size: 13px; }
     }
   </style>
 </head>
 <body>
   <div class="bubbles" id="bubbles"></div>
-
   <header class="gelatin">
     <nav>
       <a href="#" class="logo">Портфолио</a>
@@ -293,60 +101,18 @@
       </div>
     </nav>
   </header>
-
   <div class="hero gelatin">
     <h1>Дизайн</h1>
     <p>Визитки, буклеты, упаковка, полиграфия и сайты.</p>
     <div class="hero-icons">
-      <div class="icon-wrap">
-        <div class="hero-icon">💼</div>
-        <div class="icon-label">Визитки</div>
-        <div class="icon-tags">
-          <span class="icon-tag">Корпоративные</span>
-          <span class="icon-tag">С QR</span>
-          <span class="icon-tag">Под печать</span>
-        </div>
-      </div>
-      <div class="icon-wrap">
-        <div class="hero-icon">📘</div>
-        <div class="icon-label">Полиграфия</div>
-        <div class="icon-tags">
-          <span class="icon-tag">Буклеты</span>
-          <span class="icon-tag">Плакаты</span>
-          <span class="icon-tag">Листовки</span>
-        </div>
-      </div>
-      <div class="icon-wrap">
-        <div class="hero-icon">📦</div>
-        <div class="icon-label">Упаковка</div>
-        <div class="icon-tags">
-          <span class="icon-tag">Этикетки</span>
-          <span class="icon-tag">Коробки</span>
-          <span class="icon-tag">Мокапы</span>
-        </div>
-      </div>
-      <div class="icon-wrap">
-        <div class="hero-icon">💻</div>
-        <div class="icon-label">Сайт</div>
-        <div class="icon-tags">
-          <span class="icon-tag">Лендинги</span>
-          <span class="icon-tag">Карточки</span>
-          <span class="icon-tag">Адаптив</span>
-        </div>
-      </div>
-      <div class="icon-wrap">
-        <div class="hero-icon">🎨</div>
-        <div class="icon-label">3D</div>
-        <div class="icon-tags">
-          <span class="icon-tag">Модели</span>
-          <span class="icon-tag">Визуализация</span>
-          <span class="icon-tag">Интерактив</span>
-        </div>
-      </div>
+      <div class="icon-wrap"><div class="hero-icon">💼</div><div class="icon-label">Визитки</div><div class="icon-tags"><span class="icon-tag">Корпоративные</span><span class="icon-tag">С QR</span><span class="icon-tag">Под печать</span></div></div>
+      <div class="icon-wrap"><div class="hero-icon">📘</div><div class="icon-label">Полиграфия</div><div class="icon-tags"><span class="icon-tag">Буклеты</span><span class="icon-tag">Плакаты</span><span class="icon-tag">Листовки</span></div></div>
+      <div class="icon-wrap"><div class="hero-icon">📦</div><div class="icon-label">Упаковка</div><div class="icon-tags"><span class="icon-tag">Этикетки</span><span class="icon-tag">Коробки</span><span class="icon-tag">Мокапы</span></div></div>
+      <div class="icon-wrap"><div class="hero-icon">💻</div><div class="icon-label">Сайт</div><div class="icon-tags"><span class="icon-tag">Лендинги</span><span class="icon-tag">Карточки</span><span class="icon-tag">Адаптив</span></div></div>
+      <div class="icon-wrap"><div class="hero-icon">🎨</div><div class="icon-label">3D</div><div class="icon-tags"><span class="icon-tag">Модели</span><span class="icon-tag">Визуализация</span><span class="icon-tag">Интерактив</span></div></div>
     </div>
     <a href="#portfolio" class="btn">Смотреть работы</a>
   </div>
-
   <section id="about" class="gelatin">
     <h2>Обо мне</h2>
     <div class="about-grid">
@@ -359,15 +125,11 @@
       <img class="about-photo" src="https://karevholytek-hub.github.io/portfolio/designer.jpg" alt="Дизайнер">
     </div>
   </section>
-
   <section id="portfolio" class="gelatin">
     <h2>Работы</h2>
     <p class="section-desc">Примеры работ</p>
-
     <div class="product-card" data-product>
-      <div class="main-wrap">
-        <img id="mainPhoto" class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Худи">
-      </div>
+      <div class="main-wrap"><img id="mainPhoto" class="main-image" src="https://i.img402.dev/nhe7w6qcad.png" alt="Худи"></div>
       <div class="thumbs">
         <img class="thumb active" src="https://i.img402.dev/nhe7w6qcad.png" onclick="changeImage(this)">
         <img class="thumb" src="https://i.img402.dev/jo598488mj.png" onclick="changeImage(this)">
@@ -375,36 +137,21 @@
         <img class="thumb" src="https://i.img402.dev/k8z0cwix61.png" onclick="changeImage(this)">
         <img class="thumb" src="https://i.img402.dev/h5oy4luy2b.png" onclick="changeImage(this)">
       </div>
-      <div class="product-info">
-        <div class="product-title">Худи</div>
-        <div class="product-desc">Пример карточки товара с галереей</div>
-      </div>
+      <div class="product-info"><div class="product-title">Худи</div><div class="product-desc">Пример карточки товара с галереей</div></div>
     </div>
   </section>
-
   <section id="3d" class="gelatin">
     <h2>3D моделирование</h2>
     <p class="section-desc">Интерактивная модель. Можно крутить, менять виды.</p>
-
-    <div class="model-box gelatin">
-      <h3>STATMEC 250</h3>
-      <p>Визуализация стенда статических прочностных испытаний</p>
-      <a href="https://near-show-aaj2w.ship.place/" target="_blank" class="btn">Открыть 3D-модель</a>
-    </div>
-
+    <div class="model-box gelatin"><h3>STATMEC 250</h3><p>Визуализация стенда статических прочностных испытаний</p><a href="https://near-show-aaj2w.ship.place/" target="_blank" class="btn">Открыть 3D-модель</a></div>
     <p class="model-caption">Нажми кнопку выше, чтобы открыть интерактивную модель в новой вкладке (можно крутить и менять виды).</p>
   </section>
-
   <section id="contacts" class="gelatin">
     <h2>Контакты</h2>
     <p class="section-desc">Напишите, если нужен дизайн или есть вопросы.</p>
     <p style="color:#333;">Telegram / Email — добавим позже</p>
   </section>
-
-  <footer class="gelatin">
-    Портфолио · 2026
-  </footer>
-
+  <footer class="gelatin">Портфолио · 2026</footer>
   <script>
     const container = document.getElementById('bubbles');
     for (let i = 0; i < 45; i++) {
@@ -418,55 +165,28 @@
       b.style.opacity = (Math.random() * 0.5 + 0.3).toFixed(2);
       container.appendChild(b);
     }
-
     function changeImage(thumb) {
       document.getElementById('mainPhoto').src = thumb.src;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     }
-
     const gelatinEls = document.querySelectorAll('.gelatin');
-    let pressing = false;
-    let pressX = 0, pressY = 0;
-
+    let pressing = false, pressX = 0, pressY = 0;
     function updateGelatin() {
-      if (!pressing) {
-        gelatinEls.forEach(el => { el.style.transform = ''; });
-        return;
-      }
+      if (!pressing) { gelatinEls.forEach(el => { el.style.transform = ''; }); return; }
       gelatinEls.forEach(el => {
         const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = pressX - cx;
-        const dy = pressY - cy;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        const maxDist = 500;
+        const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+        const dx = pressX - cx, dy = pressY - cy, dist = Math.sqrt(dx*dx + dy*dy), maxDist = 500;
         if (dist < maxDist) {
-          const strength = (1 - dist / maxDist) * 28;
-          const angle = Math.atan2(dy, dx);
-          const tx = Math.cos(angle) * strength * 0.55;
-          const ty = Math.sin(angle) * strength * 0.55;
+          const strength = (1 - dist / maxDist) * 28, angle = Math.atan2(dy, dx);
+          const tx = Math.cos(angle) * strength * 0.55, ty = Math.sin(angle) * strength * 0.55;
           el.style.transform = `translate(${tx}px, ${ty}px) scale(${1 - strength * 0.012})`;
-        } else {
-          el.style.transform = '';
-        }
+        } else el.style.transform = '';
       });
     }
-
-    document.addEventListener('pointerdown', (e) => {
-      pressing = true;
-      pressX = e.clientX;
-      pressY = e.clientY;
-      updateGelatin();
-    });
-    document.addEventListener('pointermove', (e) => {
-      if (pressing) {
-        pressX = e.clientX;
-        pressY = e.clientY;
-        updateGelatin();
-      }
-    });
+    document.addEventListener('pointerdown', (e) => { pressing = true; pressX = e.clientX; pressY = e.clientY; updateGelatin(); });
+    document.addEventListener('pointermove', (e) => { if (pressing) { pressX = e.clientX; pressY = e.clientY; updateGelatin(); } });
     document.addEventListener('pointerup', () => { pressing = false; updateGelatin(); });
     document.addEventListener('pointercancel', () => { pressing = false; updateGelatin(); });
   </script>
