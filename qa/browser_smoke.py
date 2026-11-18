@@ -51,6 +51,8 @@ def run(site,out):
                             links:document.querySelectorAll('a[href]').length,
                             cat:!!document.querySelector('#catCanvas,[data-cat-rig]'),
                             sceneReady:!!window.__lumScene?.ready,
+                            flowerIsolated:!!document.querySelector('#flower-sway img[data-isolated="true"]'),
+                            flowerIsolationError:window.__lumScene?.isolationError||null,
                             decoded:window.__lumScene?.decoded,
                             expectedDecoded:window.__lumScene?.assets,
                             failedAssets:window.__lumScene?.failed,
@@ -78,6 +80,7 @@ def run(site,out):
                         if data["brokenLocalImages"]: issues.append("broken local images")
                         if not data["sceneReady"] or data["decoded"]!=data["expectedDecoded"] or data["failedAssets"]:
                             issues.append("photographic scene failed to decode atomically")
+                        if not data["flowerIsolated"]: issues.append("moving flower still carries scenery")
                         if data["natureObjects"]<5: issues.append("nature layers missing")
                         if data["seedCount"]==0 or not data["canopyForward"]: issues.append("seed drift/orientation failed")
                         if motion_before["flower"]==motion_after["flower"]: issues.append("main dandelion is static")
