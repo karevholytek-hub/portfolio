@@ -27,3 +27,14 @@ When the user asks to continue a complex multi-step project, first check the act
 **Then execute during the active turn:** inspect actual files, make the change, run reproducible tests, inspect real frames or recordings, and deliver the created artifact or a precise blocker. After the work, report what passed, failed, was not verified, and remains outstanding. A green automated test does not prove visual quality.
 
 If starting another independent step, write its goal/plan/criteria **before** working on it. Never claim progress between user turns or in the background unless a real scheduled automation is running. Never say "done" for unfinished or unverified work. Do not publish partial builds to `main` without G01–G08 PASS.
+
+## Mandatory WOW art-direction gate for the whole website
+
+Before reporting an art-directed portfolio site or creative design as ready, also read and apply the shared skill `karevholytek-hub/ai-shared-knowledge/.agents/skills/wow-art-direction-gate/SKILL.md`.
+
+- First-screen screenshot on desktop and mobile must present a striking, intentional artistic scene, not a gradient/card template.
+- Iconography must be a consistent author-designed set; no arbitrary emojis or anonymous rectangles masquerading as complete graphic elements.
+- Show differentiated, substantial project previews, not empty placeholders. Label speculative work clearly.
+- For the requested Luminescence direction: actual luminous flora, atmosphere, volumetric light and dandelion seeds drifting with wind. Do not insert literal mushrooms or cats into the no-cat Luminescence concept.
+- Evaluate W01–W10 in addition to G01–G08. Any score < 3, or a weak hero, means REJECTED; green CI does not equal artistic quality.
+- Keep the original GitHub Pages design unchanged while the user assesses separate creative candidates.
