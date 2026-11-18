@@ -1,3 +1,15 @@
+## Non-negotiable portfolio quality rule: 5/5 ONLY
+
+**Every portfolio project, image, presentation, visual, graphic or interactive experience must reach a genuine 5/5 before it may be called ready, proposed for publication or added to the gallery. A 4/5 is a FAIL, not an acceptable compromise.** Volume, deadlines and the number of generated variants never lower this standard.
+
+Read and apply [PORTFOLIO_QUALITY_STANDARD.md](PORTFOLIO_QUALITY_STANDARD.md) for every new creative project. Rate the final exported artifact (not just its prompt or mockup) on concept/originality, composition and typography, brand/product fidelity, execution and details, and commercial usability. **All five dimensions must score 5/5**; a single dimension at 4/5 or lower blocks release. Averages and rounded scores are prohibited.
+
+When any dimension is below 5/5: **REJECT -> record concrete defects -> rework or restart -> inspect the new export**. Never silently promote a mediocre result to pass; do not accumulate weak filler to satisfy a quota. Do not publish before the user's review and approval.
+
+Public portfolio pages and creative assets must NOT mention AI, neural networks or generation tools. For real companies, use their authentic logos and verifiable products; clearly mark unsolicited brand work as an independent concept, never imply it was commissioned.
+
+This is stricter than earlier diagnostic thresholds (including W01–W10). Earlier checks remain required but cannot override the 5/5 quality gate.
+
 # Obligatory visual QA for Karev portfolio
 
 Every change to images, animation, design or site functionality MUST use the following review process BEFORE calling the work ready:
