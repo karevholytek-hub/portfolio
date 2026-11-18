@@ -526,6 +526,11 @@
   .hero .flower-sway.is-ready{animation:v10-flower-reduced 18s ease-in-out infinite alternate!important;}
   .hero .scene-nature,.hero .hero-bg,.hero .flower-sway{transition-duration:.15s;}
 }
+
+/* V12: the source flower bitmap contains an opaque circular fragment of scenery.
+   The isolated, foreground-only flower is allowed to move; its scene cannot. */
+#flower-sway::after{display:none!important;}
+.hero.flower-static-fallback #flower-sway.is-ready{animation:none!important;transform:none!important;}
 </style>
 </head>
 <body>
@@ -918,7 +923,7 @@
   if(!hero)return;
   const scene=hero.querySelector('.scene-nature');
   const cutouts=[...scene.querySelectorAll('img'),...hero.querySelectorAll('#flower-sway img')];
-  const debug=window.__lumScene={version:11,ready:false,assets:cutouts.length+1,decoded:0,failed:[]};
+  const debug=window.__lumScene={version:12,ready:false,isolated:false,assets:cutouts.length+1,decoded:0,failed:[]};
   const decoded=async(img,name)=>{
     try{
       if(typeof img.decode==='function')await img.decode();
@@ -927,10 +932,81 @@
       debug.decoded++;
     }catch(e){debug.failed.push(name)}
   };
+
+  /* V12 flower isolation: remove the blue photographic disc from the 640x647
+     flower asset before revealing the moving layer. The unaltered background
+     remains in .scene-nature, not inside the rotated flower. Run only once. */
+  async function isolateFlower(img){
+    const w=img.naturalWidth,h=img.naturalHeight;
+    if(w!==640||h!==647)throw new Error('Unexpected flower bitmap dimensions');
+    const source=document.createElement('canvas');
+    source.width=w;source.height=h;
+    const context=source.getContext('2d',{willReadFrequently:true});
+    if(!context)throw new Error('No 2D canvas context');
+    context.drawImage(img,0,0);
+    const pixels=context.getImageData(0,0,w,h);
+    const blurred=document.createElement('canvas');
+    blurred.width=w;blurred.height=h;
+    const bc=blurred.getContext('2d',{willReadFrequently:true});
+    if(!bc)throw new Error('No blur canvas context');
+    bc.filter='blur(10px)';
+    bc.drawImage(source,0,0);
+    const smooth=bc.getImageData(0,0,w,h).data;
+    const input=pixels.data;
+    const clamp=n=>Math.max(0,Math.min(1,n));
+    let foreground=0, clear=0;
+    for(let y=0;y<h;y++){
+      const headY=((y-254)/255)**2,coreY=((y-265)/43)**2,coneY=((y-332)/88)**2;
+      const stemX=330+(y-320)*.30;
+      const stemWidth=15+(y-320)*.035;
+      const stemRange=clamp((y-313)/12)*clamp((634-y)/12);
+      for(let x=0,p=(y*w)*4;x<w;x++,p+=4){
+        const original=input[p+3];
+        if(!original)continue;
+        const r=input[p],g=input[p+1],b=input[p+2];
+        const lum=.2126*r+.7152*g+.0722*b;
+        const local=.2126*smooth[p]+.7152*smooth[p+1]+.0722*smooth[p+2];
+        const head=clamp((1-(((x-305)/302)**2+headY))*14);
+        const core=clamp((1-(((x-302)/58)**2+coreY))*6);
+        const cone=y>285?clamp((1-(((x-(308+.18*(y-315)))/56)**2+coneY))*5)*.9:0;
+        const stem=clamp((stemWidth-Math.abs(x-stemX))/6)*stemRange;
+        const contrast=clamp((lum-local-1.5)/32);
+        const hairs=head*clamp(contrast*.95+clamp((lum-130)/100)*.65);
+        const mask=Math.max(hairs,core,cone,stem);
+        const next=Math.round(original*mask);
+        input[p+3]=next;
+        if(next>20)foreground++;
+        else clear++;
+      }
+    }
+    if(foreground<40000 || foreground>230000)throw new Error('Invalid flower isolation coverage');
+    context.putImageData(pixels,0,0);
+    const blob=await new Promise((resolve,reject)=>source.toBlob(v=>v?resolve(v):reject(new Error('Canvas export failed')),'image/webp',.92));
+    const url=URL.createObjectURL(blob);
+    try{
+      img.src=url;
+      await img.decode();
+      img.dataset.isolated='true';
+      debug.isolated=true;
+      debug.foregroundPixels=foreground;
+      debug.discardedPixels=clear;
+    }catch(err){URL.revokeObjectURL(url);throw err;}
+    // Keep the new blob URL live for this image's lifetime; cleanup on navigation.
+    window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});
+  }
   const base=new Image();base.src='assets/hero-clean.webp';
   Promise.all([
     decoded(base,'hero-clean'),
-    ...cutouts.map((img,i)=>decoded(img,img.getAttribute('src')||'layer-'+i))
+    ...cutouts.map(async(img,i)=>{
+      await decoded(img,img.getAttribute('src')||'layer-'+i);
+      if(img.id || img.closest('#flower-sway')){
+        try{await isolateFlower(img);}
+        catch(err){
+          hero.classList.add('flower-static-fallback');
+          debug.isolationError=String(err);
+        }
+      }
+    })
   ]).then(()=>{
     if(debug.failed.length)return;
     requestAnimationFrame(()=>{
