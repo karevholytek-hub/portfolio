@@ -1,3 +1,16 @@
+# PRIORITY DIRECTIVE — DESIGN QUALITY REBOOT (2026-11-18)
+The user REJECTED the entire former design collection: 20 posters, both demo sites, coffee/cosmetics mockups, and mixed collages. **ZERO accepted projects. Do not reuse or publish them.**
+
+For EVERY new work, first name **one concrete deliverable**: BUSINESS CARD, COFFEE PACK FRONT, COSMETIC TUBE, MARKETPLACE CARD, BROCHURE SPREAD, PRESENTATION SLIDE, WORKING WEB PAGE, AD POSTER, etc. A generic poster or collage is NOT a substitute. Show the actual physical/digital item by itself, clearly and legibly; supporting props must not take over.
+
+**The central previous error was STYLE MONOCULTURE:** repeated dark backgrounds, similar serif/sans headlines, same aligned-left layouts, similar warm rim lighting, product-on-stone mockups and vast empty zones. The series MUST show contrasting design languages, not just change the subject matter. Mandatory **style divergence check**: for each new case, select different values across at least 4 of 7 axes: type family, palette, grid/layout, composition geometry, material/photography, illustration/graphic method, emotional tone. Audit the collection together. No single visual formula in more than 2 of any 10 consecutive independent cases.
+
+Food-category truth: coffee must look delicious, warm, freshly brewed, natural and recognizably coffee-colored (espresso, roasted brown, crema, caramel, milk, warm paper). NO fantasy purple liquid, exploding coffee rings or unappetizing theatrics unless a specific commissioned brief explicitly calls for it.
+
+Follow the **mandatory 48-check rubric** in PORTFOLIO_QUALITY_STANDARD.md and the variation matrix in PORTFOLIO_PRODUCTION_PLAN.md. Hard fail for any critical defect, any criterion below 5/5, uncertain brand data, typographic errors, poor device/print usability, insufficient diversity, or empty non-product render. Mark FAIL/UNVERIFIED, not PASS, where evidence is lacking. Every rejected artifact goes to drafts, not published gallery; only user-approved, verified cases may ship.
+
+No public mention of AI tools. Do not invent real brands' logos, SKUs, product specifications or commissioned status. Default to distinctive imaginary smaller brands when genuine reference assets are absent.
+
 ## Non-negotiable portfolio quality rule: 5/5 ONLY
 
 **Every portfolio project, image, presentation, visual, graphic or interactive experience must reach a genuine 5/5 before it may be called ready, proposed for publication or added to the gallery. A 4/5 is a FAIL, not an acceptable compromise.** Volume, deadlines and the number of generated variants never lower this standard.
