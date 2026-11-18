@@ -412,6 +412,14 @@
 @media(max-width:370px){.service-shortcut{min-height:176px!important}.shortcut-visual{height:112px;min-height:112px}.shortcut-visual img{height:110px}.shortcut-name{font-size:12px!important}.shortcut-copy small{font-size:9px}.hero h1{font-size:48px}}
 @media(prefers-reduced-motion:reduce){.service-shortcut,.shortcut-visual,.rubber-button{will-change:auto!important;transform:none!important;transition:none!important}.service-shortcut::after{display:none}}
 
+
+/* Shallows concept switcher, isolated from the existing Luminescence art direction */
+.theme-pick{display:flex;align-items:center;gap:3px;border:1px solid rgba(226,255,250,.4);padding:4px;background:rgba(4,35,45,.68);border-radius:100px;backdrop-filter:blur(10px);white-space:nowrap}
+.theme-pick a{font-size:11px;letter-spacing:.04em;font-weight:750;padding:8px 13px;color:#d9f0ed;border-radius:99px;transition:background .2s}
+.theme-pick a[aria-current="page"]{background:#d8fff1;color:#113a42}
+.theme-pick a:not([aria-current]):hover{background:rgba(230,255,248,.16)}
+@media(max-width:760px){.theme-pick a{padding:9px 11px}.theme-pick .theme-name{display:none}}
+@media(max-width:380px){.theme-pick a{padding:8px 10px}.top-end{gap:6px}}
 </style>
 </head>
 <body>
@@ -456,7 +464,7 @@
   <header class="topbar"><div class="wrap topbar-inner">
     <a href="#top" class="logo" aria-label="KAREV — на главную"><svg class="logo-mark" viewBox="0 0 64 64" style="color:#b6fff3"><use href="#mark"/></svg><div><div class="logo-main">KAREV</div><div class="logo-sub">Visual Atelier</div></div></a>
     <nav class="nav-links" id="site-nav" aria-label="Навигация"><a href="#services">Направления</a><a href="#projects">Проекты</a><a href="#approach">Подход</a><a href="#contact">Контакты</a></nav>
-    <div class="top-end"><span class="edition"><b>01</b> / luminescence</span><button type="button" class="nav-toggle" id="nav-toggle" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    <div class="top-end"><nav class="theme-pick" aria-label="Выбор дизайна портфолио"><a href="./index.html" aria-current="page" title="01 — Luminescence">01 <span class="theme-name">/ Свет</span></a><a href="./concept-03.html" title="03 — Shallows">03 <span class="theme-name">/ Море</span></a></nav><button type="button" class="nav-toggle" id="nav-toggle" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
   </div></header>
   <div class="wrap hero-main">
     <div class="eyebrow">CREATIVE DESIGN · DIGITAL ART</div>
