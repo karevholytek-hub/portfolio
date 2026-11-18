@@ -29,15 +29,18 @@ jobs:
           python -m unittest discover -s qa -p 'test_*.py' -v
           python qa/check_release.py --mode lint
       - name: Require strict acceptance when public site files change
+        id: visual_scope
         env:
           DIFF_BASE: ${{ github.event_name == 'pull_request' && 'origin/main' || github.event.before }}
           DIFF_MODE: ${{ github.event_name }}
-        run: python qa/check_change_scope.py --base "$DIFF_BASE" --mode "$DIFF_MODE"
+        run: python qa/check_change_scope.py --base "$DIFF_BASE" --mode "$DIFF_MODE" --gh-output "$GITHUB_OUTPUT"
       - name: Install Chromium for Playwright
+        if: steps.visual_scope.outputs.visual_changed == 'true'
         run: |
           python -m pip install playwright==1.56.0
           python -m playwright install --with-deps chromium
       - name: Test real served HTML and touch
+        if: steps.visual_scope.outputs.visual_changed == 'true'
         run: python qa/browser_smoke.py --site . --out qa-artifacts
       - name: Keep screenshots and diagnostic report
         if: always()
