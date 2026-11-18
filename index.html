@@ -337,7 +337,7 @@
 .seed-particle{position:absolute;left:0;top:0;width:36px;height:31px;display:block;pointer-events:none;opacity:0;will-change:transform,opacity;transform:translate3d(-50px,-50px,0)}
 .seed-particle svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 2px rgba(211,251,245,.30))}
 .flower-sway.is-ready{animation:flower-wind-kinetic 7.2s ease-in-out infinite alternate}
-.hero.is-gusting .flower-sway.is-ready{animation-duration:3s}
+
 @keyframes flower-wind-kinetic{0%{transform:rotate(-.75deg)}48%{transform:rotate(.27deg)}100%{transform:rotate(1.05deg)}}
 .hero.is-offscreen .flower-sway,.hero.is-offscreen .mist-layer,.hero.is-offscreen .flora-front,.hero.is-offscreen .glow-pollen{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.flower-sway.is-ready{animation:none!important;transform:none!important}.seed-particle{display:none!important}}
@@ -412,6 +412,34 @@
 @media(max-width:370px){.service-shortcut{min-height:176px!important}.shortcut-visual{height:112px;min-height:112px}.shortcut-visual img{height:110px}.shortcut-name{font-size:12px!important}.shortcut-copy small{font-size:9px}.hero h1{font-size:48px}}
 @media(prefers-reduced-motion:reduce){.service-shortcut,.shortcut-visual,.rubber-button{will-change:auto!important;transform:none!important;transition:none!important}.service-shortcut::after{display:none}}
 
+
+/* V8 MOBILE MOTION: Touch-first, no obsolete gust control. */
+.motion-opt-in{display:none;appearance:none;border:1px solid rgba(196,253,247,.42);background:rgba(4,35,48,.75);color:#dcfff7;border-radius:999px;padding:10px 16px;margin:13px 0 0;font:600 12px/1.5 inherit;cursor:pointer;position:relative;z-index:12}
+.motion-opt-in:not([hidden]){display:inline-flex;align-items:center;gap:8px}
+.hero .hero-bg{animation:none}
+@keyframes mobile-forest-life{0%{transform:translate3d(-.3%,0,0) scale(1.026)}50%{transform:translate3d(.25%,-.22%,0) scale(1.038)}100%{transform:translate3d(-.2%,-.14%,0) scale(1.028)}}
+@keyframes mobile-lum-breath{0%{opacity:.33;transform:translate3d(-3%,0,0) scale(.94)}50%{opacity:.58;transform:translate3d(1%,0,0) scale(1.12)}100%{opacity:.35;transform:translate3d(4%,-2%,0) scale(1)}}
+@keyframes mobile-plant-sway{0%{transform:translate3d(-5px,0,0) rotate(-2deg)}50%{transform:translate3d(6px,-1px,0) rotate(1.6deg)}100%{transform:translate3d(-3px,0,0) rotate(-1.5deg)}}
+@keyframes mobile-flower-sway{0%{transform:rotate(-1.8deg)}48%{transform:rotate(.2deg)}100%{transform:rotate(2.4deg)}}
+@media(max-width:740px){
+ .hero .hero-bg{animation:mobile-forest-life 13s ease-in-out infinite alternate!important;will-change:transform}
+ .hero .flower-sway.is-ready{animation:mobile-flower-sway 6.1s ease-in-out infinite alternate!important;will-change:transform}
+ .hero .mist-layer{animation:mobile-lum-breath 15s ease-in-out infinite alternate!important;will-change:transform}
+ .hero .breeze-plant{animation:mobile-plant-sway 9s ease-in-out infinite alternate!important;will-change:transform}
+ .hero.is-offscreen .hero-bg,.hero.is-offscreen .flower-sway,.hero.is-offscreen .mist-layer,.hero.is-offscreen .breeze-plant{animation-play-state:paused!important}
+ .service-shortcut{touch-action:pan-y; -webkit-tap-highlight-color:transparent}
+ .dock-note{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero .hero-bg,.hero .flower-sway.is-ready,.hero .mist-layer,.hero .breeze-plant{animation:none!important}
+ html.motion-opt-in .hero .hero-bg{animation:mobile-forest-life 13s ease-in-out infinite alternate!important}
+ html.motion-opt-in .hero .flower-sway.is-ready{animation:mobile-flower-sway 6.1s ease-in-out infinite alternate!important}
+ html.motion-opt-in .hero .mist-layer{animation:mobile-lum-breath 15s ease-in-out infinite alternate!important}
+ html.motion-opt-in .hero .breeze-plant{animation:mobile-plant-sway 9s ease-in-out infinite alternate!important}
+ html.motion-opt-in .seed-particle{display:block!important}
+ html.motion-opt-in .hero.is-offscreen .hero-bg,html.motion-opt-in .hero.is-offscreen .flower-sway,html.motion-opt-in .hero.is-offscreen .mist-layer,html.motion-opt-in .hero.is-offscreen .breeze-plant{animation-play-state:paused!important}
+}
+
 </style>
 </head>
 <body>
@@ -425,7 +453,6 @@
   <symbol id="ic-print" viewBox="0 0 64 64"><path d="M17 8h29l7 7v36H17z"/><path d="M45 8v8h8M24 25h22M24 32h22M24 39h14"/><path d="M9 17h8v38h29"/><path d="M9 55h31"/></symbol>
   <symbol id="ic-visual" viewBox="0 0 64 64"><circle cx="23" cy="22" r="11"/><circle cx="41" cy="38" r="13"/><path d="M8 54h48M7 54l18-21M23 42l20-25"/><circle cx="50" cy="14" r="3"/></symbol>
   <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="ic-wind" viewBox="0 0 24 24"><path d="M2 8h13a4 4 0 1 0-4-4M2 12h18a3 3 0 1 1-3 3M2 17h9a3 3 0 1 1-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
 </svg>
 
 <section class="hero" id="top" aria-label="Главная страница">
@@ -462,7 +489,8 @@
     <div class="eyebrow">CREATIVE DESIGN · DIGITAL ART</div>
     <h1>Идеи,<br>у которых<br><em>есть свет.</em></h1>
     <p class="hero-lead">Айдентика, цифровые пространства и визуальные истории. Дизайн, который не просто видят — его чувствуют.</p>
-    <div class="hero-actions"><a class="button primary" href="#projects">Исследовать работы <svg><use href="#ic-arrow"/></svg></a><button class="button ghost" id="gust-button" type="button"><svg><use href="#ic-wind"/></svg> Поймать ветер</button></div>
+    <div class="hero-actions"><a class="button primary" href="#projects">Исследовать работы <svg><use href="#ic-arrow"/></svg></a></div>
+    <button id="motion-opt-in" class="motion-opt-in" type="button" hidden>Включить живой фон <span aria-hidden="true">✦</span></button>
   </div>
   
   <div class="hero-aside" aria-hidden="true">A WORLD OF LIGHT / 2026</div>
@@ -522,7 +550,7 @@
   const hero = document.querySelector('.hero');
   const flowerElement = document.getElementById('flower-sway');
   const field = document.getElementById('wind-field');
-  const button = document.getElementById('gust-button');
+  const motionButton = document.getElementById('motion-opt-in');
   const menuButton = document.getElementById('nav-toggle');
   const nav = document.getElementById('site-nav');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -538,7 +566,7 @@
       menuButton.setAttribute('aria-label', 'Открыть меню');
     }));
   }
-  if (!hero || !flowerElement || !field || !button) return;
+  if (!hero || !flowerElement || !field) return;
 
   const flower = flowerElement.querySelector('img');
   const SRC_W = 1672, SRC_H = 941;
@@ -546,11 +574,11 @@
   const STEM = {x:1350,y:706};
   const CROWN = {x:1238,y:285};
   let W = 1, H = 1, scale=1, offsetX=0, offsetY=0;
-  let flowerReady=false, inView=true, timer=0, windPower=1, seedNonce=0, gustReset=0;
+  let flowerReady=false, inView=true, timer=0, seedNonce=0, motionOverride=false;
   const liveSeeds=new Set();
   const debug=window.__lumWind={
     version:'v5-compositor', emitterSource:'main-dandelion-head', engine:'WAAPI transforms',
-    flowerReady:false, seedCount:0, released:0, gusts:0, reduced:reduce.matches,
+    flowerReady:false, seedCount:0, released:0, reduced:reduce.matches,
     rendererFramesPerSecond:0, // no permanent JS render loop
     initialized:false, stoppedOffscreen:false,
   };
@@ -596,8 +624,8 @@
     </g><path d="M4 28l7-3 1 4-7 3Z" fill="#ffe4a2"/><circle cx="26" cy="20" r="2.3" fill="#f9ffff" opacity=".95"/>
   </svg>`;
   function releaseSeed(extra=false){
-    if(!flowerReady||!inView||reduce.matches||document.hidden)return;
-    const cap=W<740?12:23;
+    if(!flowerReady||!inView||!motionAllowed()||document.hidden)return;
+    const cap=W<740?14:23;
     if(liveSeeds.size>=cap&&!extra)return;
     const pos=crownEmitter();
     if(pos.x<-25||pos.x>W+20||pos.y<-25||pos.y>H+20)return;
@@ -630,8 +658,8 @@
   }
   function clearSeeds(){for(const seed of [...liveSeeds])seed._windAnim?.cancel();debug.seedCount=0;}
   function startSeeds(){
-    if(timer||!inView||!flowerReady||reduce.matches||document.hidden)return;
-    timer=setInterval(()=>releaseSeed(false),W<740?820:490);
+    if(timer||!inView||!flowerReady||!motionAllowed()||document.hidden)return;
+    timer=setInterval(()=>releaseSeed(false),W<740?620:490);
     releaseSeed();
   }
   function pauseScene(){
@@ -640,7 +668,7 @@
     debug.stoppedOffscreen=true;
   }
   function resumeScene(){
-    if(!flowerReady||reduce.matches||document.hidden||!inView)return;
+    if(!flowerReady||!motionAllowed()||document.hidden||!inView)return;
     hero.classList.remove('is-offscreen');
     debug.stoppedOffscreen=false;
     startSeeds();
@@ -656,18 +684,23 @@
   flower.addEventListener('error',()=>{debug.flowerReady=false;debug.error='Main photo layer unavailable; static fallback retained.'},{once:true});
   if(flower.complete&&flower.naturalWidth)initFlower();
 
-  button.addEventListener('click',()=>{
-    debug.gusts++;
-    if(reduce.matches||!inView)return;
-    hero.classList.add('is-gusting');
-    for(let j=0;j<(W<740?4:7);j++)setTimeout(()=>releaseSeed(true),j*110);
-    button.innerHTML='<svg aria-hidden="true"><use href="#ic-wind"></use></svg> Порыв ветра ✦';
-    clearTimeout(gustReset);
-    gustReset=setTimeout(()=>{
-      button.innerHTML='<svg aria-hidden="true"><use href="#ic-wind"></use></svg> Поймать ветер';
-      hero.classList.remove('is-gusting');
-    },1450);
-  });
+  function motionAllowed(){return !reduce.matches || motionOverride;}
+  function updateMotionOptIn(){
+    if(!motionButton)return;
+    const need=reduce.matches;
+    motionButton.hidden=!need;
+    motionButton.textContent=motionOverride?'Отключить анимацию':'Включить живой фон ✦';
+    document.documentElement.classList.toggle('motion-opt-in',need&&motionOverride);
+    debug.override=need&&motionOverride;
+  }
+  if(motionButton){
+    motionButton.addEventListener('click',()=>{
+      motionOverride=!motionOverride;
+      updateMotionOptIn();
+      if(motionAllowed())resumeScene();else pauseScene();
+    });
+  }
+  updateMotionOptIn();
   let resizeDelay=0;
   window.addEventListener('resize',()=>{
     clearTimeout(resizeDelay);
@@ -676,7 +709,9 @@
   document.addEventListener('visibilitychange',()=>{document.hidden?pauseScene():resumeScene()});
   reduce.addEventListener?.('change',()=>{
     debug.reduced=reduce.matches;
-    if(reduce.matches)pauseScene();else resumeScene();
+    if(!reduce.matches)motionOverride=false;
+    updateMotionOptIn();
+    if(!motionAllowed())pauseScene();else resumeScene();
   });
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
@@ -746,6 +781,29 @@
    else{el.style.setProperty('--ox',o.x.toFixed(2)+'px');el.style.setProperty('--oy',o.y.toFixed(2)+'px');el.style.setProperty('--rx',(o.x*.12).toFixed(3)+'deg');el.style.setProperty('--sc',o.scale.toFixed(4));el.style.setProperty('--stretch',(1+(o.scale-1)*.5).toFixed(4))}
    moving||=(Math.abs(o.x-o.tx)+Math.abs(o.y-o.ty)+Math.abs(o.scale-o.ts)+Math.abs(o.vx)+Math.abs(o.vy)+Math.abs(o.vs)>0.012);
  }if(moving)raf=requestAnimationFrame(tick)}
+})();
+</script>
+<script>
+/* V8: one-shot elastic touch feedback, no idle render loop and no pointer capture. */
+(()=>{
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  const cards=[...document.querySelectorAll('.service-shortcut')];
+  if(!cards.length)return;
+  for(const card of cards){
+    let active=null;
+    card.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse'||(motion.matches&&!document.documentElement.classList.contains('motion-opt-in')))return;
+      if(active)active.cancel();
+      active=card.animate([
+        {transform:'translateY(0) scale(1)',borderRadius:'22px',offset:0},
+        {transform:'translateY(3px) scale(.958,1.03)',borderRadius:'27px 20px 28px 20px',offset:.17},
+        {transform:'translateY(-5px) scale(1.026,.982)',borderRadius:'20px 27px 19px 27px',offset:.47},
+        {transform:'translateY(0) scale(1)',borderRadius:'22px',offset:1}
+      ],{duration:620,easing:'cubic-bezier(.21,.82,.24,1)',fill:'none'});
+      active.addEventListener('finish',()=>{active=null},{once:true});
+      active.addEventListener('cancel',()=>{active=null},{once:true});
+    },{passive:true});
+  }
 })();
 </script>
 </body>
