@@ -24,7 +24,7 @@ def main():
     def set_output(value):
         if opts.gh_output:
             with open(opts.gh_output,"a",encoding="utf-8") as f:
-                f.write("visual_changed="+str(value).lower()+"\\n")
+                f.write("visual_changed="+str(value).lower()+"\n")
     if opts.mode == "workflow_dispatch":
         set_output(False)
         print("Manual dispatch: strict gate is controlled separately.")
