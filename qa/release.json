@@ -1,0 +1,50 @@
+{
+  "project": "karevholytek-hub/portfolio",
+  "target": "Light portfolio with photorealistic interactive Myshka",
+  "candidate_version": "prototype-rejected-2026-11-18",
+  "candidate_sha256": null,
+  "release_ready": false,
+  "notes": "Older animated prototype rejected; public site remains untouched. Do not publish until 8 PASS and real Telegram CTA.",
+  "gates": {
+    "G01": {
+      "status": "FAIL",
+      "reason": "Several requested actions absent or anatomically implausible",
+      "evidence": []
+    },
+    "G02": {
+      "status": "FAIL",
+      "reason": "Generated ginger cat is not sufficiently identical to the real Myshka",
+      "evidence": []
+    },
+    "G03": {
+      "status": "FAIL",
+      "reason": "Joint geometry, shoulder mechanics and grooming are unnatural",
+      "evidence": []
+    },
+    "G04": {
+      "status": "FAIL",
+      "reason": "Earlier GIF is ~7 FPS; user sees static/slideshow",
+      "evidence": []
+    },
+    "G05": {
+      "status": "UNVERIFIED",
+      "reason": "No accepted evidence of 4 cursor targets and corresponding natural paw tracking",
+      "evidence": []
+    },
+    "G06": {
+      "status": "FAIL",
+      "reason": "User reports delivered cat static on their device",
+      "evidence": []
+    },
+    "G07": {
+      "status": "FAIL",
+      "reason": "Working Telegram destination not supplied",
+      "evidence": []
+    },
+    "G08": {
+      "status": "UNVERIFIED",
+      "reason": "Actual user Android browser has not passed the interaction test",
+      "evidence": []
+    }
+  }
+}
