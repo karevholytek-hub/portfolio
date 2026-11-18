@@ -360,6 +360,15 @@
  .shortcut-name{font-size:10px;white-space:nowrap;overflow-wrap:normal;flex:none;text-align:center;line-height:1.15}
 }
 @media(max-width:370px){.shortcut-name{font-size:9.2px}}
+
+/* Concept switcher — source theme remains unchanged below */
+.theme-pick{display:flex;align-items:center;gap:3px;padding:4px;border:1px solid rgba(200,255,250,.38);background:rgba(4,25,35,.72);border-radius:100px;backdrop-filter:blur(10px);white-space:nowrap}
+.theme-pick a{display:inline-flex;align-items:center;gap:3px;border-radius:100px;padding:9px 12px;color:#d2e8eb;font-size:11px;font-weight:600;letter-spacing:.035em;transition:background .2s,color .2s}
+.theme-pick a[aria-current="page"]{background:#c7fff0;color:#0b2a30}
+.theme-pick a:not([aria-current]):hover{background:rgba(174,252,244,.15);color:#fff}
+.theme-pick b{font-size:10px;font-weight:800}
+@media(max-width:740px){.theme-pick{padding:3px}.theme-pick a{padding:9px 11px;font-size:10px}.theme-pick .theme-name{display:none}}
+@media(max-width:410px){.theme-pick a{padding:8px 9px}.top-end{gap:7px}}
 </style>
 </head>
 <body>
@@ -404,7 +413,7 @@
   <header class="topbar"><div class="wrap topbar-inner">
     <a href="#top" class="logo" aria-label="KAREV — на главную"><svg class="logo-mark" viewBox="0 0 64 64" style="color:#b6fff3"><use href="#mark"/></svg><div><div class="logo-main">KAREV</div><div class="logo-sub">Visual Atelier</div></div></a>
     <nav class="nav-links" id="site-nav" aria-label="Навигация"><a href="#services">Направления</a><a href="#projects">Проекты</a><a href="#approach">Подход</a><a href="#contact">Контакты</a></nav>
-    <div class="top-end"><span class="edition"><b>01</b> / luminescence</span><button type="button" class="nav-toggle" id="nav-toggle" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    <div class="top-end"><nav class="theme-pick" aria-label="Переключить концепцию дизайна"><a href="./index.html" aria-current="page" title="01 — Luminescence"><b>01</b><span class="theme-name"> Luminescence</span></a><a href="./concept-02.html" title="02 — Morph"><b>02</b><span class="theme-name"> Morph</span></a></nav><button type="button" class="nav-toggle" id="nav-toggle" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
   </div></header>
   <div class="wrap hero-main">
     <div class="eyebrow">CREATIVE DESIGN · DIGITAL ART</div>
