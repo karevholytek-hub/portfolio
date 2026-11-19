@@ -1,15 +1,14 @@
-# PRIORITY DIRECTIVE — DESIGN QUALITY REBOOT (2026-11-18)
-The user REJECTED the entire former design collection: 20 posters, both demo sites, coffee/cosmetics mockups, and mixed collages. **ZERO accepted projects. Do not reuse or publish them.**
+# KAREV CREATIVE QUALITY RULE / v4.0 (top priority)
 
-For EVERY new work, first name **one concrete deliverable**: BUSINESS CARD, COFFEE PACK FRONT, COSMETIC TUBE, MARKETPLACE CARD, BROCHURE SPREAD, PRESENTATION SLIDE, WORKING WEB PAGE, AD POSTER, etc. A generic poster or collage is NOT a substitute. Show the actual physical/digital item by itself, clearly and legibly; supporting props must not take over.
+**Before any design, inspect [PORTFOLIO_QUALITY_STANDARD.md](PORTFOLIO_QUALITY_STANDARD.md). It is the current authoritative rubric, superseding v3's 48 checks.**
 
-**The central previous error was STYLE MONOCULTURE:** repeated dark backgrounds, similar serif/sans headlines, same aligned-left layouts, similar warm rim lighting, product-on-stone mockups and vast empty zones. The series MUST show contrasting design languages, not just change the subject matter. Mandatory **style divergence check**: for each new case, select different values across at least 4 of 7 axes: type family, palette, grid/layout, composition geometry, material/photography, illustration/graphic method, emotional tone. Audit the collection together. No single visual formula in more than 2 of any 10 consecutive independent cases.
-
-Food-category truth: coffee must look delicious, warm, freshly brewed, natural and recognizably coffee-colored (espresso, roasted brown, crema, caramel, milk, warm paper). NO fantasy purple liquid, exploding coffee rings or unappetizing theatrics unless a specific commissioned brief explicitly calls for it.
-
-Follow the **mandatory 48-check rubric** in PORTFOLIO_QUALITY_STANDARD.md and the variation matrix in PORTFOLIO_PRODUCTION_PLAN.md. Hard fail for any critical defect, any criterion below 5/5, uncertain brand data, typographic errors, poor device/print usability, insufficient diversity, or empty non-product render. Mark FAIL/UNVERIFIED, not PASS, where evidence is lacking. Every rejected artifact goes to drafts, not published gallery; only user-approved, verified cases may ship.
-
-No public mention of AI tools. Do not invent real brands' logos, SKUs, product specifications or commissioned status. Default to distinctive imaginary smaller brands when genuine reference assets are absent.
+- **Individual artifact:** 100 explicitly weighted checks in 10 domains, total 100; applied hard gates by medium. Any applicable FAIL or critical UNVERIFIED is a REJECTION, regardless of weighted aggregate. Only 100/100 with evidence can be considered for user review.
+- **Portfolio diversity:** a separate weighted 20-check/100-point gate. Compare actual thumbnails and finished artifacts, not prompts. Do not use one typeface/palette/composition/lighting recipe across unrelated works. Neighboring cases differ across 4 of 7 axes; no more than 2 cases out of 10 share the same formula.
+- **Exact deliverables** come first: if the brief says tube, show a separate tube; if business card, provide front and back; if packaging, provide the actual package design and flat artwork. Never substitute generic posters, grids, collages, marketing scenes.
+- **Food appeal/category:** coffee must look warm, natural, desirable to drink, and coffee-toned. Avoid surreal splashes as a substitute for design.
+- **No fabricated real logos, products, claims, client relationships or references.** Public assets and portfolio copy have no mention of AI tools. Independent concepts must be clearly labeled, not misrepresented as commissioned.
+- All previous design collections were rejected by the user: **0 accepted**. No rejected item may be promoted on the live website. Only user-reviewed and explicitly user-approved projects may be published.
+- The weighted scores are diagnostic, not permission to trade a serious fault for strengths elsewhere. Scores require inspected outputs and records, not confident predictions.
 
 ## Non-negotiable portfolio quality rule: 5/5 ONLY
 
