@@ -30,5 +30,141 @@
         "src": "https://i.img402.dev/h5oy4luy2b.png"
       }
     ]
+  },
+  {
+    "id": "choker",
+    "title": "Чокер",
+    "desc": "Демонстрационная серия. Характеристики товара не подтверждены.",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Главная фотография.webp",
+        "src": "media/choker/01.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 02.webp",
+        "src": "media/choker/02.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 03.webp",
+        "src": "media/choker/03.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 04.webp",
+        "src": "media/choker/04.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 05.webp",
+        "src": "media/choker/05.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 06.webp",
+        "src": "media/choker/06.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 07.webp",
+        "src": "media/choker/07.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 08.webp",
+        "src": "media/choker/08.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 09.webp",
+        "src": "media/choker/09.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 10.webp",
+        "src": "media/choker/10.webp"
+      }
+    ]
+  },
+  {
+    "id": "choker-variants-2",
+    "title": "Чокер — дополнительные варианты 1",
+    "desc": "Демонстрационная серия. Характеристики товара не подтверждены.",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 11.webp",
+        "src": "media/choker/11.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 12.webp",
+        "src": "media/choker/12.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 13.webp",
+        "src": "media/choker/13.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 14.webp",
+        "src": "media/choker/14.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 15.webp",
+        "src": "media/choker/15.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 16.webp",
+        "src": "media/choker/16.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 17.webp",
+        "src": "media/choker/17.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 18.webp",
+        "src": "media/choker/18.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 19.webp",
+        "src": "media/choker/19.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 20.webp",
+        "src": "media/choker/20.webp"
+      }
+    ]
+  },
+  {
+    "id": "choker-variants-3",
+    "title": "Чокер — дополнительные варианты 2",
+    "desc": "Демонстрационная серия. Характеристики товара не подтверждены.",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 21.webp",
+        "src": "media/choker/21.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 22.webp",
+        "src": "media/choker/22.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Чокер — вариант 23.webp",
+        "src": "media/choker/23.webp"
+      }
+    ]
   }
 ]
