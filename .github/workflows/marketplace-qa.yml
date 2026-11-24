@@ -1,0 +1,28 @@
+name: Marketplace gallery - browser QA
+on:
+  pull_request:
+    paths:
+      - 'marketplace/**'
+      - '.github/workflows/marketplace-qa.yml'
+permissions:
+  contents: read
+jobs:
+  gallery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Run gallery QA
+        run: python marketplace/test_gallery.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: marketplace-browser-proof
+          path: marketplace-proof/
+          if-no-files-found: warn
