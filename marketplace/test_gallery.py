@@ -1,5 +1,5 @@
 """Independent browser test of the isolated marketplace section; fixtures are temporary."""
-import base64, json, pathlib, shutil, subprocess, tempfile, threading, zipfile
+import base64, json, pathlib, shutil, tempfile, threading, zipfile
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from playwright.sync_api import sync_playwright
@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 root = pathlib.Path(__file__).resolve().parent
 proof = pathlib.Path("marketplace-proof").resolve()
 proof.mkdir(exist_ok=True)
-png = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=")
+png = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAAF0lEQVR4nGPMa5rGwMDAwMDAxAAD2FgAOoQBjmIWeY0AAAAASUVORK5CYII=")
 with tempfile.TemporaryDirectory() as tmp:
     base = pathlib.Path(tmp)
     target = base / "marketplace"
@@ -16,7 +16,7 @@ with tempfile.TemporaryDirectory() as tmp:
     fixture = base / "sample.png"
     fixture.write_bytes(png)
     video = base / "sample.webm"
-    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=blue:s=160x90:r=15:d=1", "-c:v", "libvpx", "-an", str(video)], check=True)
+    video.write_bytes(base64.b64decode("GkXfo59ChoEBQveBAULygQRC84EIQoKEd2VibUKHgQJChYECGFOAZwEAAAAAAAOFEU2bdLpNu4tTq4QVSalmU6yBoU27i1OrhBZUrmtTrIHWTbuMU6uEElTDZ1OsggEjTbuMU6uEHFO7a1OsggNv7AEAAAAAAABZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVSalmsCrXsYMPQkBNgIxMYXZmNjEuNy4xMDNXQYxMYXZmNjEuNy4xMDNEiYhAj0AAAAAAABZUrmvIrgEAAAAAAAA/14EBc8WI/bca9LZywm6cgQAitZyDdW5kiIEAhoVWX1ZQOIOBASPjg4QD+UCq4JCwgaC6gVqagQJVsIRVuYEBElTDZ/tzc59jwIBnyJlFo4dFTkNPREVSRIeMTGF2ZjYxLjcuMTAzc3PWY8CLY8WI/bca9LZywm5nyKFFo4dFTkNPREVSRIeUTGF2YzYxLjE5LjEwMSBsaWJ2cHhnyKFFo4hEVVJBVElPTkSHkzAwOjAwOjAxLjAwMDAwMDAwMAAfQ7Z1QcbngQCj1oEAAIDwBQCdASqgAFoAAEcIhYWIhYSIAgICdaoD+AIGmhPghqqTXcQ6qk13EOqpNdxDqqTXcQ6qk13EGAD+/00S//xYV/FhX8WFf/FhX/z8zu3F/OYAo5iBAEMAEQIABRCsABgAGFgv9AAIgIEAAACjmIEAhQARAgAFEKwAGAAYWC/0AAiAgQAAAKOYgQDIABECAAUQrAAYABhYL/QACICBAAAAo5iBAQsAEQIABRCsABgAGFgv9AAIgIEAAACjmIEBTQARAgAFEKwAGAAYWC/0AAiAgQAAAKOYgQGQABECAAUQrAAYABhYL/QACICBAAAAo5eBAdMA8QEABRAQFGAAYWC/0AAiAgQAAKOYgQIVABECAAUQrAAYABhYL/QACICBAAAAo5iBAlgAEQIABRCsABgAGFgv9AAIgIEAAACjmIECmwARAgAFEKwAGAAYWC/0AAiAgQAAAKOYgQLdABECAAUQrAAYABhYL/QACICBAAAAo5iBAyAAEQIABRCsABgAGFgv9AAIgIEAAACjmIEDYwARAgAFEKwAGAAYWC/0AAiAgQAAAKOYgQOlABECAAUQrAAYABhYL/QACICBAAAAHFO7a5G7j7OBALeK94EB8YIBo/CBAw=="))
     server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=base))
     threading.Thread(target=server.serve_forever, daemon=True).start()
     url = f"http://127.0.0.1:{server.server_port}/marketplace/"
@@ -40,6 +40,7 @@ with tempfile.TemporaryDirectory() as tmp:
             page.locator(".card").wait_for()
             page.reload()
             page.locator(".card").wait_for()
+            page.wait_for_function("document.querySelector('.cover img')?.naturalWidth > 0")
             assert "10 материалов" in page.locator("#count").inner_text()
             page.locator(".cover").click()
             assert page.locator("#thumbs button").count() == 10
