@@ -31,21 +31,21 @@ with tempfile.TemporaryDirectory() as tmp:
             page.locator("#add").click()
             page.locator("#title").fill("Тестовая карточка")
             page.locator("#desc").fill("Только тестовый материал")
-            page.locator("#files").set_input_files([str(fixture)] * 9 + [str(video)])
-            assert page.locator("#mediaList .media-row").count() == 10
+            page.locator("#files").set_input_files([str(fixture)] * 29 + [str(video)])
+            assert page.locator("#mediaList .media-row").count() == 30
             page.locator("#files").set_input_files(str(fixture))
-            assert "Не более 10" in page.locator("#status").inner_text()
-            assert page.locator("#mediaList .media-row").count() == 10
+            assert "Не более 30" in page.locator("#status").inner_text()
+            assert page.locator("#mediaList .media-row").count() == 30
             page.locator("#save").click()
             page.locator(".card").wait_for()
             page.reload()
             page.locator(".card").wait_for()
             page.wait_for_function("document.querySelector('.cover img')?.naturalWidth > 0")
-            assert "10 материалов" in page.locator("#count").inner_text()
+            assert "30 материалов" in page.locator("#count").inner_text()
             page.locator(".cover").click()
-            assert page.locator("#thumbs button").count() == 10
-            page.locator("#thumbs button").nth(9).click()
-            assert "10 / 10" in page.locator("#progress").inner_text()
+            assert page.locator("#thumbs button").count() == 30
+            page.locator("#thumbs button").nth(29).click()
+            assert "30 / 30" in page.locator("#progress").inner_text()
             v = page.locator("#large video")
             v.wait_for()
             page.wait_for_function("document.querySelector('#large video').readyState >= 2")
@@ -56,7 +56,7 @@ with tempfile.TemporaryDirectory() as tmp:
             page.locator("#close").click()
             assert page.locator("#large video").count() == 0
             page.locator(".edit-card").click()
-            page.locator("#mediaList .media-row").nth(9).get_by_role("button", name="Выше").click()
+            page.locator("#mediaList .media-row").nth(29).get_by_role("button", name="Выше").click()
             page.locator("#save").click()
             page.wait_for_function("document.querySelector('#editor').hidden")
             with page.expect_download() as download:
@@ -66,9 +66,9 @@ with tempfile.TemporaryDirectory() as tmp:
             with zipfile.ZipFile(archive) as z:
                 assert z.testzip() is None
                 manifest = json.loads(z.read("catalog.json"))
-                assert len(manifest[0]["media"]) == 10
-                assert manifest[0]["media"][8]["kind"] == "video"
-                assert len(z.namelist()) == 11
+                assert len(manifest[0]["media"]) == 30
+                assert manifest[0]["media"][28]["kind"] == "video"
+                assert len(z.namelist()) == 31
                 z.extractall(target)
             context.close()
             public = browser.new_context()
@@ -84,14 +84,14 @@ with tempfile.TemporaryDirectory() as tmp:
                 page.screenshot(path=str(proof / f"gallery-{width}.png"))
                 page.locator(".cover").click()
                 page.locator("#next").click()
-                assert "2 / 10" in page.locator("#progress").inner_text()
-                page.locator("#thumbs button").nth(8).click()
+                assert "2 / 30" in page.locator("#progress").inner_text()
+                page.locator("#thumbs button").nth(28).click()
                 page.locator("#large video").wait_for()
                 page.screenshot(path=str(proof / f"viewer-{width}.png"))
                 page.keyboard.press("Escape")
                 assert not page.locator("#viewer").is_visible()
             assert not errors, errors
             browser.close()
-            print("PASS: 10-item limit, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
+            print("PASS: 30-item limit, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
     finally:
         server.shutdown()
