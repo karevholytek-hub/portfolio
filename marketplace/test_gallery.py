@@ -63,7 +63,7 @@ with tempfile.TemporaryDirectory() as tmp:
             page.wait_for_function("document.querySelector('#large video').currentTime > 0")
             page.screenshot(path=str(proof / "video-desktop.png"))
             page.locator("#close").click()
-            assert page.locator("#large video").count() == 0
+            page.locator("#large video").wait_for(state="detached")
             page.locator(".edit-card").click()
             assert page.locator("#mediaList .media-preview img").count() == 29
             assert page.locator("#mediaList .media-preview video").count() == 1
@@ -123,10 +123,10 @@ with tempfile.TemporaryDirectory() as tmp:
             state = {"head": old_head, "requests": [], "manifest": None, "conflict": False, "blob_count": 0}
             def github_mock(route):
                 req = route.request
-                headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "*", "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS"}
+                headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, content-type, accept, x-github-api-version", "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS"}
                 if req.method == "OPTIONS":
                     return route.fulfill(status=204, headers=headers)
-                assert req.headers.get("authorization") == "Bearer github_pat_test_only"
+                assert req.all_headers().get("authorization") == "Bearer github_pat_test_only"
                 path = req.url.split("/repos/karevholytek-hub/portfolio", 1)[1]
                 state["requests"].append((req.method, path))
                 body = req.post_data_json if req.method in ("POST", "PATCH") else None
