@@ -1,0 +1,34 @@
+[
+  {
+    "id": "hoodie",
+    "title": "Худи",
+    "desc": "Прежняя карточка из архива портфолио",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Худи 1.png",
+        "src": "https://i.img402.dev/nhe7w6qcad.png"
+      },
+      {
+        "kind": "image",
+        "name": "Худи 2.png",
+        "src": "https://i.img402.dev/jo598488mj.png"
+      },
+      {
+        "kind": "image",
+        "name": "Худи 3.png",
+        "src": "https://i.img402.dev/g5226yd7fb.png"
+      },
+      {
+        "kind": "image",
+        "name": "Худи 4.png",
+        "src": "https://i.img402.dev/k8z0cwix61.png"
+      },
+      {
+        "kind": "image",
+        "name": "Худи 5.png",
+        "src": "https://i.img402.dev/h5oy4luy2b.png"
+      }
+    ]
+  }
+]
