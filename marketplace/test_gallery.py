@@ -35,6 +35,15 @@ with tempfile.TemporaryDirectory() as tmp:
             assert page.locator("#mediaList .media-row").count() == 30
             page.locator("#files").set_input_files(str(fixture))
             assert "Не более 30" in page.locator("#status").inner_text()
+            assert page.locator("#mediaList .media-preview img").count() == 29
+            assert page.locator("#mediaList .media-preview video").count() == 1
+            assert page.locator("#mediaList .media-cover-label").count() == 1
+            assert page.locator("#mediaList .media-row").first.locator(".media-cover-label").inner_text() == "Обложка"
+            page.locator("#mediaList .media-preview img").first.scroll_into_view_if_needed()
+            page.wait_for_function("document.querySelector('#mediaList img')?.naturalWidth > 0")
+            page.locator("#mediaList .media-preview video").scroll_into_view_if_needed()
+            page.wait_for_function("document.querySelector('#mediaList video')?.videoWidth > 0")
+            page.screenshot(path=str(proof / "editor-previews-desktop.png"))
             assert page.locator("#mediaList .media-row").count() == 30
             page.locator("#save").click()
             page.locator(".card").wait_for()
@@ -56,6 +65,20 @@ with tempfile.TemporaryDirectory() as tmp:
             page.locator("#close").click()
             assert page.locator("#large video").count() == 0
             page.locator(".edit-card").click()
+            assert page.locator("#mediaList .media-preview img").count() == 29
+            assert page.locator("#mediaList .media-preview video").count() == 1
+            page.locator("#mediaList .media-row").nth(29).get_by_role("button", name="Удалить материал").click()
+            assert page.locator("#mediaList .media-row").count() == 29
+            assert page.locator("#mediaList video").count() == 0
+            page.locator("#cancel").click()
+            page.locator(".edit-card").click()
+            assert page.locator("#mediaList .media-row").count() == 30
+            assert page.locator("#mediaList video").count() == 1
+            page.set_viewport_size({"width": 390, "height": 900})
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+            page.locator("#mediaList .media-row").first.scroll_into_view_if_needed()
+            page.screenshot(path=str(proof / "editor-previews-mobile.png"))
+            page.set_viewport_size({"width": 1440, "height": 900})
             page.locator("#mediaList .media-row").nth(29).get_by_role("button", name="Выше").click()
             page.locator("#save").click()
             page.wait_for_function("document.querySelector('#editor').hidden")
@@ -92,6 +115,6 @@ with tempfile.TemporaryDirectory() as tmp:
                 assert not page.locator("#viewer").is_visible()
             assert not errors, errors
             browser.close()
-            print("PASS: 30-item limit, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
+            print("PASS: 30-item limit, editor previews and deletion, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
     finally:
         server.shutdown()
