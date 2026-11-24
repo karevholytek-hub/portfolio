@@ -44,47 +44,17 @@
       {
         "kind": "image",
         "name": "Чокер — вариант 02.webp",
-        "src": "media/choker/02.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 03.webp",
-        "src": "media/choker/03.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 04.webp",
-        "src": "media/choker/04.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 05.webp",
-        "src": "media/choker/05.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 06.webp",
-        "src": "media/choker/06.webp"
+        "src": "media/choker/02-no-title.webp"
       },
       {
         "kind": "image",
         "name": "Чокер — вариант 07.webp",
-        "src": "media/choker/07.webp"
+        "src": "media/choker/07-no-title.webp"
       },
       {
         "kind": "image",
         "name": "Чокер — вариант 08.webp",
-        "src": "media/choker/08.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 09.webp",
-        "src": "media/choker/09.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 10.webp",
-        "src": "media/choker/10.webp"
+        "src": "media/choker/08-no-title.webp"
       },
       {
         "kind": "image",
@@ -108,48 +78,18 @@
       },
       {
         "kind": "image",
-        "name": "Чокер — вариант 15.webp",
-        "src": "media/choker/15.webp"
-      },
-      {
-        "kind": "image",
         "name": "Чокер — вариант 16.webp",
         "src": "media/choker/16.webp"
       },
       {
         "kind": "image",
-        "name": "Чокер — вариант 17.webp",
-        "src": "media/choker/17.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 18.webp",
-        "src": "media/choker/18.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 19.webp",
-        "src": "media/choker/19.webp"
-      },
-      {
-        "kind": "image",
         "name": "Чокер — вариант 20.webp",
-        "src": "media/choker/20.webp"
+        "src": "media/choker/20-no-title.webp"
       },
       {
-        "kind": "image",
-        "name": "Чокер — вариант 21.webp",
-        "src": "media/choker/21.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 22.webp",
-        "src": "media/choker/22.webp"
-      },
-      {
-        "kind": "image",
-        "name": "Чокер — вариант 23.webp",
-        "src": "media/choker/23.webp"
+        "kind": "video",
+        "name": "grok-video-7c8a3134-11ed-40cd-982e-1927298f5422.mp4",
+        "src": "media/choker/11.mp4"
       }
     ]
   }
