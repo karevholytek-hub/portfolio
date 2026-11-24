@@ -5,6 +5,23 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from playwright.sync_api import sync_playwright
 
 root = pathlib.Path(__file__).resolve().parent
+# Validate the real published manifest before replacing it with isolated test fixtures.
+catalog = json.loads((root / "catalog.json").read_text(encoding="utf8"))
+assert isinstance(catalog, list)
+ids = set()
+for card in catalog:
+    assert card["id"] not in ids and card["title"].strip(), card["id"]
+    ids.add(card["id"])
+    assert 1 <= len(card["media"]) <= 30, card["id"]
+    for item in card["media"]:
+        assert item["kind"] in ("image", "video") and item["name"]
+        src = item["src"]
+        if src.startswith("https://"):
+            continue
+        assert src.startswith("media/") and ".." not in src.split("/"), src
+        file = (root / src).resolve()
+        assert file.is_relative_to(root.resolve()) and file.is_file() and file.stat().st_size > 0, src
+print("PASS: published catalog structure and local media existence")
 proof = pathlib.Path("marketplace-proof").resolve()
 proof.mkdir(exist_ok=True)
 png = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAAF0lEQVR4nGPMa5rGwMDAwMDAxAAD2FgAOoQBjmIWeY0AAAAASUVORK5CYII=")
@@ -63,7 +80,7 @@ with tempfile.TemporaryDirectory() as tmp:
             page.wait_for_function("document.querySelector('#large video').currentTime > 0")
             page.screenshot(path=str(proof / "video-desktop.png"))
             page.locator("#close").click()
-            assert page.locator("#large video").count() == 0
+            page.locator("#large video").wait_for(state="detached")
             page.locator(".edit-card").click()
             assert page.locator("#mediaList .media-preview img").count() == 29
             assert page.locator("#mediaList .media-preview video").count() == 1
@@ -113,8 +130,83 @@ with tempfile.TemporaryDirectory() as tmp:
                 page.screenshot(path=str(proof / f"viewer-{width}.png"))
                 page.keyboard.press("Escape")
                 assert not page.locator("#viewer").is_visible()
+
+            # Simulate the actual GitHub REST protocol without credentials or external writes.
+            editor = browser.new_context(viewport={"width": 1440, "height": 900})
+            page = editor.new_page()
+            page.on("pageerror", lambda e: errors.append(str(e)))
+            saved_catalog = json.loads((target / "catalog.json").read_text(encoding="utf8"))
+            old_head, tree_sha, new_tree, new_head, blob_sha = "a"*40, "b"*40, "c"*40, "d"*40, "e"*40
+            state = {"head": old_head, "requests": [], "manifest": None, "conflict": False, "blob_count": 0}
+            def github_mock(route):
+                req = route.request
+                headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, content-type, accept, x-github-api-version", "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS"}
+                if req.method == "OPTIONS":
+                    return route.fulfill(status=204, headers=headers)
+                assert req.all_headers().get("authorization") == "Bearer github_pat_test_only"
+                path = req.url.split("/repos/karevholytek-hub/portfolio", 1)[1]
+                state["requests"].append((req.method, path))
+                body = req.post_data_json if req.method in ("POST", "PATCH") else None
+                if path == "/git/ref/heads/main":
+                    result = {"object":{"sha": state["head"]}}
+                elif path.startswith("/contents/marketplace/catalog.json?ref="):
+                    remote = saved_catalog if not state["conflict"] else []
+                    result = {"encoding":"base64","content":base64.b64encode(json.dumps(remote).encode()).decode()}
+                elif path == "/git/commits/"+old_head:
+                    result = {"tree":{"sha":tree_sha}}
+                elif path == "/git/trees/"+tree_sha+"?recursive=1":
+                    result = {"truncated":False,"tree":[{"type":"blob","path":"marketplace/"+m["src"]} for c in saved_catalog for m in c["media"]]}
+                elif path == "/git/blobs" and req.method == "POST":
+                    assert base64.b64decode(body["content"]) == png
+                    state["blob_count"] += 1
+                    result = {"sha":blob_sha}
+                elif path == "/git/trees" and req.method == "POST":
+                    assert body["base_tree"] == tree_sha
+                    assert len(body["tree"]) == 2
+                    assert any(e.get("sha")==blob_sha and e["path"].startswith("marketplace/media/uploads/") for e in body["tree"])
+                    state["manifest"] = json.loads(next(e["content"] for e in body["tree"] if e["path"]=="marketplace/catalog.json"))
+                    result = {"sha":new_tree}
+                elif path == "/git/commits" and req.method == "POST":
+                    assert body["tree"] == new_tree and body["parents"] == [old_head]
+                    result = {"sha":new_head}
+                elif path == "/git/refs/heads/main" and req.method == "PATCH":
+                    assert body == {"sha":new_head,"force":False}
+                    state["head"] = new_head
+                    result = {"object":{"sha":new_head}}
+                else:
+                    raise AssertionError((req.method,path))
+                route.fulfill(status=200, json=result, headers=headers)
+            page.route("https://api.github.com/**", github_mock)
+            page.goto(url+"?edit=1")
+            page.locator(".edit-card").click()
+            page.locator("#mediaList .media-row").nth(0).get_by_role("button",name="Удалить материал").click()
+            page.locator("#files").set_input_files(str(fixture))
+            page.locator("#save").click()
+            page.wait_for_function("document.querySelector('#editor').hidden")
+            state["conflict"] = True
+            page.locator("#publish").click()
+            page.locator("#githubToken").fill("github_pat_test_only")
+            page.locator("#publishConfirm").click()
+            page.wait_for_function("document.querySelector('#publishStatus').textContent.includes('Каталог GitHub изменился')")
+            assert not any(method!="GET" for method,path in state["requests"])
+            page.locator("#publishCancel").click()
+            state["conflict"] = False
+            page.locator("#publish").click()
+            page.locator("#githubToken").fill("github_pat_test_only")
+            page.locator("#publishConfirm").click()
+            page.wait_for_function("document.querySelector('#status').textContent.includes('Изменения отправлены в GitHub')")
+            assert state["head"] == new_head and state["blob_count"] == 1
+            assert len(state["manifest"][0]["media"]) == 30
+            assert state["manifest"][0]["media"][0]["src"] == saved_catalog[0]["media"][1]["src"]
+            assert state["manifest"][0]["media"][-1]["src"].startswith("media/uploads/")
+            assert page.locator("#githubToken").input_value() == ""
+            assert page.evaluate("!JSON.stringify(localStorage).includes('github_pat_test_only') && !JSON.stringify(sessionStorage).includes('github_pat_test_only')")
+            page.reload()
+            page.locator(".card").wait_for()
+            assert page.locator(".cover img").get_attribute("src") == saved_catalog[0]["media"][1]["src"]
+            editor.close()
             assert not errors, errors
             browser.close()
-            print("PASS: 30-item limit, editor previews and deletion, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
+            print("PASS: mocked GitHub publication and conflict protection, 30-item limit, editor previews and deletion, editor persistence, reorder, video playback, ZIP CRC, published isolation, 390/768/1440 layout and viewer navigation")
     finally:
         server.shutdown()
