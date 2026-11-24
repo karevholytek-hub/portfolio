@@ -1,0 +1,26 @@
+name: Assemble selected marketplace video
+on:
+  push:
+    branches: [marketplace-video-assembly-20261124]
+    paths: ['.github/workflows/assemble-marketplace-video.yml']
+permissions:
+  contents: write
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble and verify original video
+        run: |
+          set -euo pipefail
+          cat .marketplace-transfer/part-* > marketplace/media/choker/11.mp4
+          test "$(wc -c < marketplace/media/choker/11.mp4)" = 8895482
+          echo '64d7349f1dd1c5b1803f41998c37cce93b0b9453669ca8acd462edb17894ef59  marketplace/media/choker/11.mp4' | sha256sum -c -
+          test "$(git hash-object marketplace/media/choker/11.mp4)" = 17c5df50c85e0e6cf9909cb317f9fade890d8cda
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add marketplace/media/choker/11.mp4
+          git rm -r .marketplace-transfer
+          git commit -m 'Assemble exact original video and remove transfer chunks'
+          git push origin HEAD:refs/heads/marketplace-video-assembly-20261124
