@@ -5,6 +5,23 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from playwright.sync_api import sync_playwright
 
 root = pathlib.Path(__file__).resolve().parent
+# Validate the real published manifest before replacing it with isolated test fixtures.
+catalog = json.loads((root / "catalog.json").read_text(encoding="utf8"))
+assert isinstance(catalog, list)
+ids = set()
+for card in catalog:
+    assert card["id"] not in ids and card["title"].strip(), card["id"]
+    ids.add(card["id"])
+    assert 1 <= len(card["media"]) <= 30, card["id"]
+    for item in card["media"]:
+        assert item["kind"] in ("image", "video") and item["name"]
+        src = item["src"]
+        if src.startswith("https://"):
+            continue
+        assert src.startswith("media/") and ".." not in src.split("/"), src
+        file = (root / src).resolve()
+        assert file.is_relative_to(root.resolve()) and file.is_file() and file.stat().st_size > 0, src
+print("PASS: published catalog structure and local media existence")
 proof = pathlib.Path("marketplace-proof").resolve()
 proof.mkdir(exist_ok=True)
 png = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAAF0lEQVR4nGPMa5rGwMDAwMDAxAAD2FgAOoQBjmIWeY0AAAAASUVORK5CYII=")

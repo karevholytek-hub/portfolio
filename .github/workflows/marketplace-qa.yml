@@ -4,6 +4,11 @@ on:
     paths:
       - 'marketplace/**'
       - '.github/workflows/marketplace-qa.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'marketplace/**'
+      - '.github/workflows/marketplace-qa.yml'
 permissions:
   contents: read
 jobs:

@@ -8,6 +8,9 @@ from pathlib import Path
 
 def is_public_visual(path):
     path=path.replace("\\","/")
+    # Marketplace is an independent gallery with its own browser QA on PR/push.
+    # The main portfolio release manifest concerns the animated Myshka homepage.
+    if path.startswith("marketplace/"): return False
     if path == "index.html": return True
     if path.startswith(("assets/","css/","js/","images/","media/","public/")): return True
     if path.endswith((".html",".css",".js",".jsx",".tsx",".webp",".png",".jpg",".jpeg",".svg",".gif",".avif",".mp4",".webm")):
@@ -43,7 +46,7 @@ def main():
     visual=[p for p in files if is_public_visual(p)]
     if not visual:
         set_output(False)
-        print("Non-public QA/documentation changes only; technical preflight still required.")
+        print("No changes to main portfolio visuals; technical preflight still required. Marketplace has separate browser QA.")
         return 0
     set_output(True)
     print("Public visuals changed; require full evidence-based acceptance:",", ".join(visual))
