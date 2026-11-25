@@ -199,5 +199,72 @@
         "src": "media/blush/20.webp"
       }
     ]
+  },
+  {
+    "id": "gaming-desk",
+    "title": "Игровой стол",
+    "desc": "Демонстрационная серия инфографики и интерьерной съёмки. Характеристики и детали комплектации требуют проверки.",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Главная фотография.webp",
+        "src": "media/gaming-desk/01.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Габариты.webp",
+        "src": "media/gaming-desk/02.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Карбоновая текстура.webp",
+        "src": "media/gaming-desk/03.webp"
+      },
+      {
+        "kind": "image",
+        "name": "LED-подсветка.webp",
+        "src": "media/gaming-desk/04.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Подстаканник.webp",
+        "src": "media/gaming-desk/05.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Подросток за игрой — фото.webp",
+        "src": "media/gaming-desk/06.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Подросток за игрой — вариант.webp",
+        "src": "media/gaming-desk/07.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Игровая зона с подростком.webp",
+        "src": "media/gaming-desk/08.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Для игр и учёбы.webp",
+        "src": "media/gaming-desk/09.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Габариты и детали.webp",
+        "src": "media/gaming-desk/10.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Интерьер с инфографикой.webp",
+        "src": "media/gaming-desk/11.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Альтернативная обложка.webp",
+        "src": "media/gaming-desk/12.webp"
+      }
+    ]
   }
 ]
