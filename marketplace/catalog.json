@@ -92,5 +92,112 @@
         "src": "media/choker/11.mp4"
       }
     ]
+  },
+  {
+    "id": "blush",
+    "title": "Румяна",
+    "desc": "Демонстрационная серия рекламной съёмки и инфографики. Характеристики товара не подтверждены.",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Главная фотография.webp",
+        "src": "media/blush/01.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Естественный румянец — макро.webp",
+        "src": "media/blush/02.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Лёгкая растушёвка.webp",
+        "src": "media/blush/03.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Шелковистая текстура.webp",
+        "src": "media/blush/04.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Закрытая упаковка.webp",
+        "src": "media/blush/05.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Улыбка.webp",
+        "src": "media/blush/06.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Сияющий цвет 1.webp",
+        "src": "media/blush/07.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Бархатный финиш.webp",
+        "src": "media/blush/08.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Естественный румянец 1.webp",
+        "src": "media/blush/09.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Естественный румянец 2.webp",
+        "src": "media/blush/10.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Лёгкая растушёвка 1.webp",
+        "src": "media/blush/11.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Мягкий акцент.webp",
+        "src": "media/blush/12.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Нежное сияние.webp",
+        "src": "media/blush/13.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Розовый штрих.webp",
+        "src": "media/blush/14.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Лёгкая растушёвка 2.webp",
+        "src": "media/blush/15.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Трендовый оттенок 1.webp",
+        "src": "media/blush/16.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Свежий образ 1.webp",
+        "src": "media/blush/17.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Свежий образ 2.webp",
+        "src": "media/blush/18.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Сияющий цвет 2.webp",
+        "src": "media/blush/19.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Трендовый оттенок 2.webp",
+        "src": "media/blush/20.webp"
+      }
+    ]
   }
 ]
