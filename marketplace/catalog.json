@@ -266,5 +266,52 @@
         "src": "media/gaming-desk/12.webp"
       }
     ]
+  },
+  {
+    "id": "mens-gloves",
+    "title": "Мужские перчатки",
+    "desc": "Предметная и lifestyle-съёмка, инфографика",
+    "media": [
+      {
+        "kind": "image",
+        "name": "Главная фотография.webp",
+        "src": "media/mens-gloves/01.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Две стороны.webp",
+        "src": "media/mens-gloves/02.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Рельефная строчка.webp",
+        "src": "media/mens-gloves/03.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Вязаная манжета.webp",
+        "src": "media/mens-gloves/04.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Аккуратная форма.webp",
+        "src": "media/mens-gloves/05.webp"
+      },
+      {
+        "kind": "image",
+        "name": "В городе.webp",
+        "src": "media/mens-gloves/06.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Кофе.webp",
+        "src": "media/mens-gloves/07.webp"
+      },
+      {
+        "kind": "image",
+        "name": "Как измерить ладонь.webp",
+        "src": "media/mens-gloves/08.webp"
+      }
+    ]
   }
 ]
